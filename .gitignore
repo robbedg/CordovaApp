@@ -1,0 +1,6 @@
+.DS_Store
+
+# Build Files
+/Inventory/AppPackages/*
+/Inventory/bin/*
+/Inventory/bld/*
