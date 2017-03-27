@@ -10,6 +10,8 @@
                 '<strong>Location</strong>: ' + $info[1] + '<br />' +
                 '<strong>Category</strong>: ' + $info[2]
             );
+
+            
         },
         function ($error) {
             $("#result").text("Scanning failed: " + $error);
