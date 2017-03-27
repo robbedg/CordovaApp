@@ -3,14 +3,16 @@
     $event.preventDefault();
 
     cordova.plugins.barcodeScanner.scan(
-        function (result) {
-            $("#result").text("We got a barcode\n" +
-                "Result: " + result.text + "\n" +
-                "Format: " + result.format + "\n" +
-                "Cancelled: " + result.cancelled);
+        function ($result) {
+            var $info = $result.text.split(',', 3);
+            $("#result").append(
+                '<strong>ID</strong>: ' + $info[0] + '<br />' +
+                '<strong>Location</strong>: ' + $info[1] + '<br />' +
+                '<strong>Category</strong>: ' + $info[2]
+            );
         },
-        function (error) {
-            $("#result").text("Scanning failed: " + error);
+        function ($error) {
+            $("#result").text("Scanning failed: " + $error);
         }
     );
 });
