@@ -21,17 +21,6 @@ $("#scan").click(function ($event) {
 
             //save to file
             window.localStorage.setItem('test', JSON.stringify($info));
-            window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function ($dir) {
-                $dir.getFile("loans.log", { create: true }, function ($file) {
-                    var $logOb = $file;
-                    var $log = JSON.stringify($info);
-                    $logOb.createWriter(function ($fileWriter) {
-                        $fileWriter.seek($fileWriter.length);
-                        var $blob = new Blob([$log], { type: 'text/plain' });
-                        $fileWriter.write($blob);
-                    }, function ($e) { console.error($e); });
-                });
-            });
         },
         function ($error) {
             $("#result").text("Scanning failed: " + $error);
