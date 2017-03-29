@@ -1,4 +1,5 @@
-﻿$("#scan").click(function ($event) {
+﻿"use strict";
+$("#scan").click(function ($event) {
     //prevent default
     $event.preventDefault();
 
@@ -8,13 +9,18 @@
             var $info = $result.text.split(',', 3);
 
             //add to <p />
+            $("#result").empty();
             $("#result").append(
                 '<strong>ID</strong>: ' + $info[0] + '<br />' +
                 '<strong>Location</strong>: ' + $info[1] + '<br />' +
                 '<strong>Category</strong>: ' + $info[2]
             );
 
+            //show results
+            $("#results").removeClass('hidden');
+
             //save to file
+            window.localStorage.setItem('test', JSON.stringify($info));
             window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function ($dir) {
                 $dir.getFile("loans.log", { create: true }, function ($file) {
                     var $logOb = $file;
@@ -32,3 +38,15 @@
         }
     );
 });
+
+$(document).ready(function () {
+    //localStorage.setItem('items', JSON.stringify([{ 'id': '0', 'location': 'Location1', 'category': 'Bank' }]));
+    getItems();
+});
+
+function getItems() {
+    if (localStorage.getItem('items') !== null) {
+        var $items = JSON.parse(localStorage.getItem('items'));
+        console.log($items);
+    }
+}
