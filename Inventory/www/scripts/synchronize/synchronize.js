@@ -18,7 +18,7 @@ function getAttributes($db) {
     .done(function ($response) {
 
         $($response.data).each(function ($i, $val) {
-            $db.attributes.put({ id: $val['id'], attributes: $val['attributes'] });
+            $db.attributes.put({ id: $val['id'], attributes: JSON.parse($val['attributes']) });
         });
     });
 }
