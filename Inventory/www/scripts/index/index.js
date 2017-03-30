@@ -58,43 +58,26 @@ $("#save a").click(function ($event) {
 
 //on document load
 $(document).ready(function () {
-    localStorage.clear();
-    //localStorage.setItem('items', JSON.stringify([]));
-    //localStorage.setItem('items', JSON.stringify([{ 'id': '0', 'location': 'Location1', 'category': 'Bank' }]));
     getItems();
 
-    //localStorage.clear();
-    //for (var $i = 0; $i < 1000000; $i++) {
-    //    localStorage.setItem($i, 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-    //}
-
-    var db = new Dexie("friend_database");
-    db.version(1).stores({
-        friends: 'name,shoeSize'
+    var $db = new Dexie('Inventory');
+    $db.version(1).stores({
+        attributes: 'id,attributes',
+        items: 'id,category,location,from,until,attributes'
     });
 
+    getAttributes($db);
     //
     // Put some data into it
     //
-    db.friends.put({ name: "Nicolas", shoeSize: 8 }).then(function () {
-        //
-        // Then when data is stored, read from it
-        //
-        return db.friends.get('Nicolas');
-    }).then(function (friend) {
-        //
-        // Display the result
-        //
-        console.log("Nicolas has shoe size " + friend.shoeSize);
-    }).catch(function (error) {
-        //
-        // Finally don't forget to catch any error
-        // that could have happened anywhere in the
-        // code blocks above.
-        //
-        console.log("Ooops: " + error);
-    });
 
+    //for (var $i = 0; $i < 1000; $i++) {
+    //    $db.attributes.put({ id: $i, attributes: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' });
+    //}
+
+    //$db.attributes.count().then(function ($count) {
+    //    console.log($count);
+    //});
 });
 
 //get items from localstorage
