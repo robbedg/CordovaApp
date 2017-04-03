@@ -40,12 +40,15 @@ $(document).ready(function () {
     $.each($item.attributes, function ($key, $value) {
         $("#attributes")
             .append(
-            $('<div />')
+            $('<div class="attribute" />')
                 .append(
-                    $('<input type="text" class="form-control" />').val($key)
+                    $('<input type="text" class="form-control attribute-key" />').val($key)
                 )
                 .append(
-                    $('<input type="text" class="form-control" />').val($value)
+                    $('<input type="text" class="form-control attribute-value" />').val($value)
+                )
+                .append(
+                    $('<a href="#" class="btn btn-danger attribute-delete" />').append('<span class="fa fa-trash"></span>')
                 )
             );
     });

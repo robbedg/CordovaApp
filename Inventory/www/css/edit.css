@@ -1,0 +1,18 @@
+﻿.attribute {
+    padding: 6rem;
+}
+
+.attribute-key {
+    width: calc(50% - 4rem);
+    float: left;
+    margin-right: 2rem;
+}
+
+.attribute-value {
+    width: calc(50% - 4rem);
+    float: left;
+}
+
+.attribute-delete {
+    float: right;
+}

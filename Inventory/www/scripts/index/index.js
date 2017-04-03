@@ -2,6 +2,8 @@
 
 var $db = getDB();
 
+localStorage.setItem('x', 'x');
+
 $("#scan").click(function ($event) {
     //prevent default
     $event.preventDefault();
