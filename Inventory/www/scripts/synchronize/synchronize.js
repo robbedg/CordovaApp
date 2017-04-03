@@ -15,14 +15,15 @@ function getAttributes() {
         crossDomain: true,
         type: 'POST',
         dataType: 'json',
-        contentType: 'application/json',
         data: JSON.stringify($data_attributes)
     })
     .done(function ($response) {
         //to DB
+        var $attr = new Array();
         $($response.data).each(function ($i, $val) {
-            $db.attributes.put({ id: $val['id'], attributes: JSON.parse($val['attributes']) });
+            $attr.push({ id: $val['id'], attributes: $val['attributes'] });
         });
+        $db.attributes.bulkPut($attr);
     });
 
     //ajax get locations
@@ -34,9 +35,11 @@ function getAttributes() {
     })
     .done(function ($response) {
         //to DB
+        var $loc = new Array();
         $($response.data).each(function ($i, $val) {
-            $db.locations.put({ id: $val['id'], name: $val['name'] });
+            $loc.push({ id: $val['id'], name: $val['name'] });
         });
+        $db.locations.bulkPut($loc);
     });
 
     //ajax get categories
@@ -48,8 +51,10 @@ function getAttributes() {
     })
     .done(function ($response) {
         //to DB
+        var $cat = new Array();
         $($response.data).each(function ($i, $val) {
-            $db.categories.put({ id: $val['id'], name: $val['name'] });
+            $cat.push({ id: $val['id'], name: $val['name'] });
         });
+        $db.categories.bulkPut($cat);
     });
 }

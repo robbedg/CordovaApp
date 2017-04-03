@@ -108,9 +108,7 @@
   <plugin name="cordova-plugin-media-capture" spec="~1.4.2" />
   <preference name="WindowsStoreDisplayName" value="Inventory" />
   <vs:platformSpecificValues>
-    <vs:platformSpecificWidget platformName="windows" id="Inventory">
-      <vs:packageOutputPath>C:\Users\Robbe De Geyndt\Desktop\CordovaApp\Inventory\AppPackages\</vs:packageOutputPath>
-    </vs:platformSpecificWidget>
+    <vs:platformSpecificWidget platformName="windows" id="Inventory" />
   </vs:platformSpecificValues>
   <plugin name="cordova-plugin-compat" spec="~1.1.0" />
   <plugin name="cordova-plugin-file" spec="~4.3.2" />

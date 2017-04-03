@@ -41,6 +41,9 @@ $("#scan").click(function ($event) {
                     $.each($result['attributes'], function ($key, $value) {
                         $("#result").append('<strong>' + $key + '</strong>: ' + $value + '<br />');
                     });
+
+                    //store item
+                    localStorage.setItem('current_item', JSON.stringify($item));
                 });
 
             //show results
@@ -51,8 +54,6 @@ $("#scan").click(function ($event) {
             $("#location").val($info[1]);
             $("#category").val($info[2]);
 
-            //store item
-            localStorage.setItem('current_item', JSON.stringify($item));
         },
         function ($error) {
             $("#result").text("Scanning failed: " + $error);
@@ -88,7 +89,6 @@ $("#save a").click(function ($event) {
 
 //on document load
 $(document).ready(function () {
-
    
 
     getItems();
