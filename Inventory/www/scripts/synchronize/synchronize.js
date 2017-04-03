@@ -1,7 +1,8 @@
 ﻿"use strict";
 
-function getAttributes($db) {
+function getAttributes() {
 
+    var $db = getDB();
     var $data = new Object();
     $data.search = null;
     $data.attributes = true;

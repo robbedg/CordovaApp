@@ -1,20 +1,47 @@
-﻿//"use strict";
+﻿"use strict";
+
+var $db = getDB();
+
 $("#scan").click(function ($event) {
     //prevent default
     $event.preventDefault();
 
+    //when scan success
     cordova.plugins.barcodeScanner.scan(
         function ($result) {
+
+            //make object
+            var $item = new Object();
+
             //get results
             var $info = $result.text.split(',', 3);
+
+            //fill object
+            $item.id = $info[0];
+            $item.location = $info[1];
+            $item.category = $info[2];
 
             //add to <p />
             $("#result").empty();
             $("#result").append(
                 '<strong>ID</strong>: ' + $info[0] + '<br />' +
                 '<strong>Location</strong>: ' + $info[1] + '<br />' +
-                '<strong>Category</strong>: ' + $info[2]
+                '<strong>Category</strong>: ' + $info[2] + '<br />'
             );
+
+            //get attr.
+            $db.attributes
+                .where('id')
+                .equals($info[0])
+                .first(function ($result) {
+                    //add to objects
+                    $item.attributes = $result['attributes'];
+
+                    //add to <p />
+                    $.each($result['attributes'], function ($key, $value) {
+                        $("#result").append('<strong>' + $key + '</strong>: ' + $value + '<br />');
+                    });
+                });
 
             //show results
             $("#results").removeClass('hidden');
@@ -23,6 +50,9 @@ $("#scan").click(function ($event) {
             $("#item_id").val($info[0]);
             $("#location").val($info[1]);
             $("#category").val($info[2]);
+
+            //store item
+            localStorage.setItem('current_item', JSON.stringify($item));
         },
         function ($error) {
             $("#result").text("Scanning failed: " + $error);
@@ -58,26 +88,13 @@ $("#save a").click(function ($event) {
 
 //on document load
 $(document).ready(function () {
+
+   
+
     getItems();
 
-    var $db = new Dexie('Inventory');
-    $db.version(1).stores({
-        attributes: 'id,attributes',
-        items: 'id,category,location,from,until,attributes'
-    });
+    getAttributes();
 
-    getAttributes($db);
-    //
-    // Put some data into it
-    //
-
-    //for (var $i = 0; $i < 1000; $i++) {
-    //    $db.attributes.put({ id: $i, attributes: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' });
-    //}
-
-    //$db.attributes.count().then(function ($count) {
-    //    console.log($count);
-    //});
 });
 
 //get items from localstorage
