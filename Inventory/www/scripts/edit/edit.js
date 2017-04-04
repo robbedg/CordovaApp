@@ -114,6 +114,12 @@ $("#save").click(function ($event) {
     //create item
     var $item = { id: $("#item_id").val(), location: $("#location_select").val(), category: $("#category_select").val(), attributes: $attributes, action: 'Update' };
 
+    //to storage
+    localStorage.setItem('current_item', JSON.stringify($item));
+
     //to database
-    $db.items.put($item);
+    $db.items.put($item).then(function () {
+        //back to home
+        window.location = 'index.html';
+    });
 });

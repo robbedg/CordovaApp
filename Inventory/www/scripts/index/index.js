@@ -18,38 +18,41 @@ $("#scan").click(function ($event) {
             //get results
             var $info = $result.text.split(',', 3);
 
-            //fill object
-            $item.id = $info[0];
-            $item.location = $info[1];
-            $item.category = $info[2];
+            $db.items.where('id').equals($info[0]).count(function ($count) {
+                console.log($count);
+                //not yet modified
+                if ($count === 0) {
+                    //fill object
+                    $item.id = $info[0];
+                    $item.location = $info[1];
+                    $item.category = $info[2];
 
-            //add to <p />
-            $("#result").empty();
-            $("#result").append(
-                '<strong>ID</strong>: ' + $info[0] + '<br />' +
-                '<strong>Location</strong>: ' + $info[1] + '<br />' +
-                '<strong>Category</strong>: ' + $info[2] + '<br />'
-            );
+                    //get attr.
+                    $db.attributes
+                        .where('id')
+                        .equals($info[0])
+                        .first(function ($result) {
+                            //add to objects
+                            $item.attributes = $result['attributes'];
 
-            //get attr.
-            $db.attributes
-                .where('id')
-                .equals($info[0])
-                .first(function ($result) {
-                    //add to objects
-                    $item.attributes = $result['attributes'];
+                            //store item
+                            localStorage.setItem('current_item', JSON.stringify($item));
+                        });
+                }
+                //already been modified
+                else {
+                    //get item
+                    $db.item.where('id').equals($info[0]).first(function ($result) {
+                        $item = $result;
 
-                    //add to <p />
-                    $.each($result['attributes'], function ($key, $value) {
-                        $("#result").append('<strong>' + $key + '</strong>: ' + $value + '<br />');
+                        //store item
+                        localStorage.setItem('current_item', $item);
                     });
-
-                    //store item
-                    localStorage.setItem('current_item', JSON.stringify($item));
-                });
+                }
+            });
 
             //show results
-            $("#results").removeClass('hidden');
+            showDetails();
 
             //add data to hidden fields
             $("#item_id").val($info[0]);
@@ -62,6 +65,33 @@ $("#scan").click(function ($event) {
         }
     );
 });
+
+function showDetails() {
+
+    //get current item
+    var $json = localStorage.getItem('current_item');
+
+    if ($json !== null) {
+        var $item = JSON.parse($json);
+        //add to <p />
+        $("#result").empty();
+        $("#result").append(
+            '<strong>ID</strong>: ' + $item['id'] + '<br />' +
+            '<strong>Location</strong>: ' + $item['location'] + '<br />' +
+            '<strong>Category</strong>: ' + $item['category'] + '<br />'
+        );
+
+        //add attributes to <p />
+        $.each($item['attributes'], function ($key, $value) {
+            $("#result").append('<strong>' + $key + '</strong>: ' + $value + '<br />');
+        });
+        $("#results").removeClass('hidden');
+    } else {
+        $("#result").empty();
+        $("#result").addClass('hidden');
+    }
+
+}
 
 $("#save a").click(function ($event) {
     //prevent default
@@ -91,11 +121,12 @@ $("#save a").click(function ($event) {
 
 //on document load
 $(document).ready(function () {
-   
-
-    getItems();
 
     getAttributes();
+
+    showDetails();
+
+    getItems();
 
 });
 
@@ -139,5 +170,10 @@ function loadButtons() {
 
         //delete from table
         $(this).parent().parent().remove();
+
+        //empty selected
+        localStorage.removeItem('current_item');
+
+        showDetails();
     });
 }
