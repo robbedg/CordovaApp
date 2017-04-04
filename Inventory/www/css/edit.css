@@ -1,5 +1,18 @@
-﻿.attribute {
-    padding: 6rem;
+﻿legend {
+    margin-bottom: 1rem;
+}
+
+.form-horizontal label.control-label {
+    padding-top: 0rem;
+    margin-bottom: 0.5rem;
+}
+
+select.form-control {
+    margin-bottom: 1rem;
+}
+
+.attribute {
+    padding-bottom: 6rem;
 }
 
 .attribute-key {
@@ -14,5 +27,13 @@
 }
 
 .attribute-delete {
+    float: right;
+}
+
+#add {
+    float: left;
+}
+
+#save {
     float: right;
 }

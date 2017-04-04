@@ -2,6 +2,9 @@
 
 var $db = getDB();
 
+//debug
+console.log(localStorage.getItem('current_item'));
+
 //on load
 $(document).ready(function () {
     //check localstorage
@@ -53,4 +56,46 @@ $(document).ready(function () {
             );
     });
 
+    //load buttons
+    loadDelete();
+});
+
+//load delete buttons
+function loadDelete() {
+    //remove attribute
+    $(".attribute > a").click(function ($event) {
+        //prevent default
+        $event.preventDefault();
+        //delete
+        $(this).parent().remove();
+    });
+}
+
+//add attribute
+$("#add").click(function ($event) {
+    //prevent default
+    $event.preventDefault();
+
+    //add attribute
+    $("#attributes")
+        .append(
+        $('<div class="attribute" />')
+            .append(
+                $('<input type="text" class="form-control attribute-key" placeholder="Attribute" />')
+            )
+            .append(
+                $('<input type="text" class="form-control attribute-value" placeholder="Value" />')
+            )
+            .append(
+                $('<a href="#" class="btn btn-danger attribute-delete" />').append('<span class="fa fa-trash"></span>')
+            )
+        );
+
+    //load buttons
+    loadDelete();
+});
+
+//save
+$("#save").click(function ($event) {
+    $event.preventDefault();
 });
