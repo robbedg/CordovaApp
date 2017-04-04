@@ -101,9 +101,8 @@ $(document).ready(function () {
 
 //get items from localstorage
 function getItems() {
-    if (localStorage.getItem('items') !== null) {
-        var $items = JSON.parse(localStorage.getItem('items'));
 
+    $db.items.toArray(function ($items) {
         //empty table
         $("#table tbody").empty();
 
@@ -114,14 +113,7 @@ function getItems() {
                     .append($('<td />').append($element['id']))
                     .append($('<td />').append($element['location']))
                     .append($('<td />').append($element['category']))
-                    .append($('<td />').append($element['from']))
-                    .append($('<td />').append($element['until']))
                 );
         });
-
-
-    } else {
-        //make new empty item array
-        localStorage.setItem('items', JSON.stringify([]));
-    }
+    });
 }

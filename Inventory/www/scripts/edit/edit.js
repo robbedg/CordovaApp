@@ -16,7 +16,8 @@ $(document).ready(function () {
     }
 
     //set title
-    $("#item_id").append($item.id);
+    $("#item_id_title").append($item.id);
+    $("#item_id").val($item.id);
 
 
     //set locations
@@ -97,5 +98,22 @@ $("#add").click(function ($event) {
 
 //save
 $("#save").click(function ($event) {
+    //prevent dafault
     $event.preventDefault();
+
+    //get attributes
+    var $attributes = new Object();
+
+    $(".attribute").each(function () {
+        var $key = $(this).find(".attribute-key").first().val();
+        var $value = $(this).find(".attribute-value").first().val();
+
+        $attributes[$key] = $value;
+    });
+
+    //create item
+    var $item = { id: $("#item_id").val(), location: $("#location_select").val(), category: $("#category_select").val(), attributes: $attributes };
+
+    //to database
+    $db.items.put($item);
 });
