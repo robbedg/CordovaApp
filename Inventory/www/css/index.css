@@ -72,3 +72,8 @@
     border-radius: 4px;
     margin-bottom: 1rem;
 }
+
+#overview_table a {
+    float: right;
+    margin-left: 1rem;
+}

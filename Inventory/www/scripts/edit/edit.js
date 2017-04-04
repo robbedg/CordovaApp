@@ -112,7 +112,7 @@ $("#save").click(function ($event) {
     });
 
     //create item
-    var $item = { id: $("#item_id").val(), location: $("#location_select").val(), category: $("#category_select").val(), attributes: $attributes };
+    var $item = { id: $("#item_id").val(), location: $("#location_select").val(), category: $("#category_select").val(), attributes: $attributes, action: 'Update' };
 
     //to database
     $db.items.put($item);

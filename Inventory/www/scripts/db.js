@@ -6,7 +6,7 @@ $db.version(1).stores({
     attributes: 'id,attributes',
     locations: 'id,name',
     categories: 'id,name',
-    items: 'id,category,location,attributes'
+    items: 'id,category,location,attributes,action'
 });
 
 function getDB() {

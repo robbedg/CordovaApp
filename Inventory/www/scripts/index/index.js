@@ -113,7 +113,31 @@ function getItems() {
                     .append($('<td />').append($element['id']))
                     .append($('<td />').append($element['location']))
                     .append($('<td />').append($element['category']))
+                    .append($('<td />').append($element['action']))
+                    .append($('<td />')
+                        .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
+                        .append($('<a href="#" class="btn btn-primary btn-sm edit" /a>').append('<span class="fa fa-edit"></span>'))
+                    )
                 );
         });
+        loadButtons();
+    });
+}
+
+//load buttons in table
+function loadButtons() {
+    $(".delete").click(function ($event) {
+        //prevent default
+        $event.preventDefault();
+
+        //get id
+        var $id = $(this).parent().parent().find('td').first().text();
+        console.log($id);
+
+        //delete from db
+        $db.items.where('id').equals($id).delete();
+
+        //delete from table
+        $(this).parent().parent().remove();
     });
 }
