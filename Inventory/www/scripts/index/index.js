@@ -2,7 +2,8 @@
 
 var $db = getDB();
 
-localStorage.setItem('x', 'x');
+localStorage.clear();
+localStorage.setItem('current_item', '{"id":"0000000001","location":"AB","category":"Bank","attributes":{"a":"a","s":"s","z":"s","test":"test"}}');
 
 $("#scan").click(function ($event) {
     //prevent default
@@ -157,13 +158,13 @@ function getItems() {
 
 //load buttons in table
 function loadButtons() {
+    //delete
     $(".delete").click(function ($event) {
         //prevent default
         $event.preventDefault();
 
         //get id
         var $id = $(this).parent().parent().find('td').first().text();
-        console.log($id);
 
         //delete from db
         $db.items.where('id').equals($id).delete();
@@ -175,5 +176,21 @@ function loadButtons() {
         localStorage.removeItem('current_item');
 
         showDetails();
+    });
+
+    //edit
+    $(".edit").click(function ($event) {
+        //prevent default
+        $event.preventDefault();
+
+        //get id
+        var $id = $(this).parent().parent().find('td').first().text();
+
+        //load in localstorage
+        $db.items.where('id').equals($id).first(function ($item) {
+            localStorage.setItem('current_item', JSON.stringify($item));
+            window.location = "edit.html";
+        });
+
     });
 }
