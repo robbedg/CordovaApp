@@ -1,6 +1,10 @@
 ﻿"use strict";
 
-function getAttributes() {
+$("#download").click(function ($event) {
+    pullData();
+});
+
+function pullData() {
 
     //get database connection
     var $db = getDB();

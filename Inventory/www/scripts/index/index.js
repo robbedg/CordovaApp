@@ -100,36 +100,8 @@ function showDetails($item) {
 
 }
 
-$("#save a").click(function ($event) {
-    //prevent default
-    $event.preventDefault();
-
-    //get date from
-    var $dateStringFrom = $("#datetimepicker_from").datetimepicker('date');
-    var $from = moment($dateStringFrom).format();
-
-    //get date until
-    var $dateStringUntil = $("#datetimepicker_until").datetimepicker('date');
-    var $until = moment($dateStringUntil).format();
-
-    //save to localstorage
-    console.log(localStorage.getItem('items'));
-    var $items = JSON.parse(localStorage.getItem('items'));
-    console.log($items);
-
-    $items.push({ 'id': $("#item_id").val(), 'location': $("#location").val(), 'category': $("#category").val(), 'from': $from, 'until': $until });
-
-    localStorage.setItem('items', JSON.stringify($items));
-    console.log(localStorage.getItem('items'));
-
-    //get items
-    getItems();
-});
-
 //on document load
 $(document).ready(function () {
-
-    getAttributes();
 
     var $item = JSON.parse(localStorage.getItem('current_item'));
     showDetails($item);

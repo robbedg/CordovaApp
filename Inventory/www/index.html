@@ -15,7 +15,6 @@
     <link href="css/index.css" rel="stylesheet" />
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     <link href="css/bootstrap/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="css/bootstrap/bootstrap.spacelab.min.css" rel="stylesheet" />
 </head>
@@ -64,44 +63,7 @@
                 <h3>Details</h3>
                 <p id="result"></p>
                 <a href="edit.html" class="btn btn-primary btn-lg" id="edit">Edit</a>
-            </div>
-          
-            <!-- use item -->  
-            <div id="use">
-                <h3>Use item</h3>
-
-                <!-- hidden fields -->
-                <input type="hidden" id="item_id" />
-                <input type="hidden" id="location" />
-                <input type="hidden" id="category" />
-
-                <!-- from -->
-                <div class="input-group date" id="datetimepicker_from">
-                    <label for="from" class="control-label">From:</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="from" />
-                        <span class="input-group-addon">
-                            <span class="fa fa-calendar"></span>
-                        </span>
-                    </div>
-                </div>
-
-                <!-- until -->
-                <div class="input-group date" id="datetimepicker_until">
-                    <label for="until" class="control-label">Until:</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="until" />
-                        <span class="input-group-addon">
-                            <span class="fa fa-calendar"></span>
-                        </span>
-                    </div>
-                </div>
-
-                <!-- save -->
-                <div id="save">
-                    <a href="#" class="btn btn-primary btn-lg">Save</a>
-                </div>
-            </div>
+            </div>  
         </div>
 
         <!-- overview -->
@@ -130,15 +92,10 @@
     <script src="scripts/platformOverrides.js"></script>
     <script src="scripts/jquery/jquery-3.1.1.min.js"></script>
     <script src="scripts/bootstrap/bootstrap.min.js"></script>
-
-    <script src="scripts/index/moment-with-locales.min.js"></script>
-    <script src="scripts/index/bootstrap-datetimepicker.min.js"></script>
-    <script src="scripts/index/datetimepicker_config.js"></script>
     
     <script src="scripts/dexie.min.js"></script>
     <script src="scripts/db.js"></script>
     
-    <script src="scripts/synchronize/synchronize.js"></script>
     <script src="scripts/index/index.js"></script>
 </body>
 </html>
