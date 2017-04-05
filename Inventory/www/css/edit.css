@@ -1,4 +1,16 @@
-﻿legend {
+﻿#item_id_title {
+    float: left;
+}
+
+#delete {
+    float: right;
+}
+
+fieldset {
+    width: 100%;
+}
+
+legend {
     margin-bottom: 1rem;
 }
 

@@ -38,22 +38,28 @@ $("#scan").click(function ($event) {
 
                             //store item
                             localStorage.setItem('current_item', JSON.stringify($item));
+
+                            //show results
+                            console.log($item);
+                            showDetails($item);
                         });
                 }
                 //already been modified
                 else {
                     //get item
-                    $db.item.where('id').equals($info[0]).first(function ($result) {
+                    $db.items.where('id').equals($info[0]).first(function ($result) {
                         $item = $result;
+                        console.log($item, $result);
 
                         //store item
-                        localStorage.setItem('current_item', $item);
+                        localStorage.setItem('current_item', JSON.stringify($item));
+
+                        //show results
+                        console.log($item);
+                        showDetails($item);
                     });
                 }
             });
-
-            //show results
-            showDetails();
 
             //add data to hidden fields
             $("#item_id").val($info[0]);
@@ -67,13 +73,13 @@ $("#scan").click(function ($event) {
     );
 });
 
-function showDetails() {
+function showDetails($item) {
 
     //get current item
     var $json = localStorage.getItem('current_item');
 
     if ($json !== null) {
-        var $item = JSON.parse($json);
+        
         //add to <p />
         $("#result").empty();
         $("#result").append(
@@ -125,7 +131,8 @@ $(document).ready(function () {
 
     getAttributes();
 
-    showDetails();
+    var $item = JSON.parse(localStorage.getItem('current_item'));
+    showDetails($item);
 
     getItems();
 

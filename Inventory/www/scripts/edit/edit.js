@@ -52,7 +52,7 @@ $(document).ready(function () {
                     $('<input type="text" class="form-control attribute-value" />').val($value)
                 )
                 .append(
-                    $('<a href="#" class="btn btn-danger attribute-delete" />').append('<span class="fa fa-trash"></span>')
+                    $('<a href="#" class="btn btn-danger attribute-delete" />').append('<span class="fa fa-close"></span>')
                 )
             );
     });
@@ -88,7 +88,7 @@ $("#add").click(function ($event) {
                 $('<input type="text" class="form-control attribute-value" placeholder="Value" />')
             )
             .append(
-                $('<a href="#" class="btn btn-danger attribute-delete" />').append('<span class="fa fa-trash"></span>')
+                $('<a href="#" class="btn btn-danger attribute-delete" />').append('<span class="fa fa-close"></span>')
             )
         );
 
@@ -122,4 +122,10 @@ $("#save").click(function ($event) {
         //back to home
         window.location = 'index.html';
     });
+});
+
+//delete button
+$("#delete a").click(function ($event) {
+    //prevent default
+    $event.preventDefault();
 });
