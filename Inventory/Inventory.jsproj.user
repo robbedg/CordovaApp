@@ -10,6 +10,8 @@
     <AppxBuildConfigurationSelection>x86</AppxBuildConfigurationSelection>
     <RemoteMachine0>192.168.2.121</RemoteMachine0>
     <UseAuthentication0>True</UseAuthentication0>
+    <RemoteMachine1>192.168.2.121:50080</RemoteMachine1>
+    <UseAuthentication1>True</UseAuthentication1>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Android'">
     <DebuggerFlavor>SimulateNexus7</DebuggerFlavor>

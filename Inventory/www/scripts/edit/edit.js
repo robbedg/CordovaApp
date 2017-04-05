@@ -126,6 +126,25 @@ $("#save").click(function ($event) {
 
 //delete button
 $("#delete a").click(function ($event) {
-    //prevent default
-    $event.preventDefault();
+    //get attributes
+    var $attributes = new Object();
+
+    $(".attribute").each(function () {
+        var $key = $(this).find(".attribute-key").first().val();
+        var $value = $(this).find(".attribute-value").first().val();
+
+        $attributes[$key] = $value;
+    });
+
+    //create item
+    var $item = { id: $("#item_id").val(), location: $("#location_select").val(), category: $("#category_select").val(), attributes: $attributes, action: 'Delete' };
+
+    //to storage
+    localStorage.setItem('current_item', JSON.stringify($item));
+
+    //to database
+    $db.items.put($item).then(function () {
+        //back to home
+        window.location = 'index.html';
+    });
 });
