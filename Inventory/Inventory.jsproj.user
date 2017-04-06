@@ -16,6 +16,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Windows-x86'">
     <AllowLocalNetworkLoopback>true</AllowLocalNetworkLoopback>
-    <DebuggerFlavor>WindowsRemote</DebuggerFlavor>
+    <DebuggerFlavor>WindowsLocal</DebuggerFlavor>
   </PropertyGroup>
 </Project>

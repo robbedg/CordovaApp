@@ -17,7 +17,6 @@
     <link href="css/bootstrap/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="css/bootstrap/bootstrap.spacelab.min.css" rel="stylesheet" />
 
-    <link href="css/edit.css" rel="stylesheet" />
 </head>
 <body>
     <!-- header -->
@@ -35,14 +34,14 @@
 
             <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-2" aria-expanded="false">
                 <ul class="nav navbar-nav">
-                    <!-- nav buttons-->
+                    <!-- nav buttons -->
                     
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
                     <!-- nav buttons -->
                     <li><a href="synchronize.html"><span class="fa fa-refresh"></span></a></li>
-                    <li><a href="settings.html"><span class="fa fa-cog"></span></a></li>
+                    <li class="active"><a href="settings.html"><span class="fa fa-cog"></span></a></li>
                 </ul>
             </div>
         </div>
@@ -50,48 +49,18 @@
 
     <!-- content -->
     <div id="wrapper">
+
         <!-- title -->
-        <h1 class="hidden">Inventory</h1>
+        <h1 class="hidden">Settings</h1>
 
-        <h2 id="item_id_title"></h2>
-
-        <!-- delete -->
-        <div id="delete">
-            <a href="#" class="btn btn-danger btn-lg"><span class="fa fa-trash"></span></a>
+        <div id="address" class="form-group">
+            <label class="control-label" for="address_in">Address</label>
+            <input class="form-control" id="address_in" type="text" placeholder="http://example.com" />
         </div>
-
-        <div class="form-horizontal" id="data">
-            <!-- item id -->
-            <input id="item_id" type="hidden" />
-            <fieldset>
-                <!-- title -->
-                <legend>Edit</legend>
-
-                <!-- select location -->
-                <label for="location_select" class="control-label">Location</label>
-                <select class="form-control" id="location_select">
-                    <!-- data -->
-                </select>
-
-                <!-- select category -->
-                <label for="category_select" class="control-label">Category</label>
-                <select class="form-control" id="category_select">
-                    <!-- data -->
-                </select>
-            </fieldset>
-            <fieldset>
-                <legend>Attritbutes</legend>
-
-                <!-- attributes -->
-                <div id="attributes">
-                    <!-- data -->
-                </div>
-            </fieldset>
-            <fieldset>
-                <a href="#" class="btn btn-success btn-lg" id="add"><span class="fa fa-plus"></span></a>
-                <a href="#" class="btn btn-primary btn-lg" id="save"><span class="fa fa-save"></span></a>
-            </fieldset>
+        <div id="save">
+            <a href="#" class="btn btn-primary btn-lg"><span class="fa fa-save"></span></a>
         </div>
+        
 
 
     </div>
@@ -103,7 +72,7 @@
 
     <script src="scripts/dexie.min.js"></script>
     <script src="scripts/db.js"></script>
-    
-    <script src="scripts/edit/edit.js"></script>
+
+    <script src="scripts/settings/settings.js"></script>
 </body>
 </html>

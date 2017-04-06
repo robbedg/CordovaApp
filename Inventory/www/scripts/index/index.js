@@ -2,7 +2,7 @@
 
 var $db = getDB();
 
-localStorage.clear();
+//localStorage.clear();
 localStorage.setItem('current_item', '{"id":"0000000001","location":"AB","category":"Bank","attributes":{"a":"a","s":"s","z":"s","test":"test"}}');
 
 $("#scan").click(function ($event) {

@@ -1,10 +1,17 @@
 ﻿"use strict";
 
 $("#download").click(function ($event) {
-    pullData();
+
+    //get address
+    if (localStorage.getItem('settings') !== null) {
+        var $settings = JSON.parse(localStorage.getItem('settings'));
+        pullData($settings.address);
+    } else {
+        window.location('settings.html');
+    }
 });
 
-function pullData() {
+function pullData($address) {
 
     //get database connection
     var $db = getDB();
@@ -15,7 +22,7 @@ function pullData() {
     $data_attributes.attributes = true;
     
     $.ajax({
-        url: 'http://inventory.local/index.php/items/get',
+        url: $address + '/index.php/items/get',
         crossDomain: true,
         type: 'POST',
         dataType: 'json',
@@ -37,7 +44,7 @@ function pullData() {
 
     //ajax get locations
     $.ajax({
-        url: 'http://inventory.local/index.php/locations/get',
+        url: $address + '/index.php/locations/get',
         crossDomain: true,
         type: 'POST',
         data: JSON.stringify(new Object())
@@ -53,7 +60,7 @@ function pullData() {
 
     //ajax get categories
     $.ajax({
-        url: 'http://inventory.local/index.php/categories/get',
+        url: $address + '/index.php/categories/get',
         crossDomain: true,
         type: 'POST',
         data: JSON.stringify(new Object())
