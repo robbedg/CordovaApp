@@ -9,11 +9,13 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Android = Debug|Android
 		Debug|iOS = Debug|iOS
+		Debug|Windows-AnyCPU = Debug|Windows-AnyCPU
 		Debug|Windows-ARM = Debug|Windows-ARM
 		Debug|Windows-x64 = Debug|Windows-x64
 		Debug|Windows-x86 = Debug|Windows-x86
 		Release|Android = Release|Android
 		Release|iOS = Release|iOS
+		Release|Windows-AnyCPU = Release|Windows-AnyCPU
 		Release|Windows-ARM = Release|Windows-ARM
 		Release|Windows-x64 = Release|Windows-x64
 		Release|Windows-x86 = Release|Windows-x86
@@ -25,6 +27,7 @@ Global
 		{09DE00C8-6F16-4FC6-AF11-481545865716}.Debug|iOS.ActiveCfg = Debug|iOS
 		{09DE00C8-6F16-4FC6-AF11-481545865716}.Debug|iOS.Build.0 = Debug|iOS
 		{09DE00C8-6F16-4FC6-AF11-481545865716}.Debug|iOS.Deploy.0 = Debug|iOS
+		{09DE00C8-6F16-4FC6-AF11-481545865716}.Debug|Windows-AnyCPU.ActiveCfg = Debug|Windows-ARM
 		{09DE00C8-6F16-4FC6-AF11-481545865716}.Debug|Windows-ARM.ActiveCfg = Debug|Windows-ARM
 		{09DE00C8-6F16-4FC6-AF11-481545865716}.Debug|Windows-ARM.Build.0 = Debug|Windows-ARM
 		{09DE00C8-6F16-4FC6-AF11-481545865716}.Debug|Windows-ARM.Deploy.0 = Debug|Windows-ARM
@@ -40,6 +43,9 @@ Global
 		{09DE00C8-6F16-4FC6-AF11-481545865716}.Release|iOS.ActiveCfg = Release|iOS
 		{09DE00C8-6F16-4FC6-AF11-481545865716}.Release|iOS.Build.0 = Release|iOS
 		{09DE00C8-6F16-4FC6-AF11-481545865716}.Release|iOS.Deploy.0 = Release|iOS
+		{09DE00C8-6F16-4FC6-AF11-481545865716}.Release|Windows-AnyCPU.ActiveCfg = Release|Windows-x86
+		{09DE00C8-6F16-4FC6-AF11-481545865716}.Release|Windows-AnyCPU.Build.0 = Release|Windows-x86
+		{09DE00C8-6F16-4FC6-AF11-481545865716}.Release|Windows-AnyCPU.Deploy.0 = Release|Windows-x86
 		{09DE00C8-6F16-4FC6-AF11-481545865716}.Release|Windows-ARM.ActiveCfg = Release|Windows-ARM
 		{09DE00C8-6F16-4FC6-AF11-481545865716}.Release|Windows-ARM.Build.0 = Release|Windows-ARM
 		{09DE00C8-6F16-4FC6-AF11-481545865716}.Release|Windows-ARM.Deploy.0 = Release|Windows-ARM

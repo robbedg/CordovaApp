@@ -21,14 +21,19 @@ function pullData() {
         dataType: 'json',
         data: JSON.stringify($data_attributes)
     })
-    .done(function ($response) {
-        //to DB
-        var $attr = new Array();
-        $($response.data).each(function ($i, $val) {
-            $attr.push({ id: $val['id'], attributes: $val['attributes'] });
+        .done(function ($response) {
+            //to DB
+            var $attr = new Array();
+            $($response.data).each(function ($i, $val) {
+                $("#debug").append($val['id'] + '<br />');
+                $attr.push({ id: $val['id'], attributes: $val['attributes'] });
+            });
+            $db.attributes.bulkPut($attr);
+        })
+        .fail(function (jqXHR, textstatus) {
+            $("#debug").append(textstatus);
+            $("#debug").append(jqXHR);
         });
-        $db.attributes.bulkPut($attr);
-    });
 
     //ajax get locations
     $.ajax({
