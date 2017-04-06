@@ -18,8 +18,9 @@ $("#scan").click(function ($event) {
 
             //get results
             $item.id = $result.text;
+            console.log($item);
 
-            $db.items.where('id').equals($item.id).count(function ($count) {
+            $db.items_out.where('id').equals($item.id).count(function ($count) {
                 console.log($count);
                 //not yet modified
                 if ($count === 0) {
@@ -29,6 +30,7 @@ $("#scan").click(function ($event) {
                         .where('id')
                         .equals($item.id)
                         .first(function ($result) {
+                            console.log($result);
                             //add to objects
                             $item = $result;
 
@@ -69,12 +71,18 @@ $("#scan").click(function ($event) {
     );
 });
 
-function showDetails($item) {
+function showDetails($in) {
+    var $item = $in;
 
     //get current item
     var $json = localStorage.getItem('current_item');
 
-    if ($json !== null) {
+    //checking
+    if ($item === null && $json !== null) {
+        $item = JSON.parse($json);
+    }
+    console.log($item);
+    if ($item !== null) {
         
         //add to <p />
         $("#result").empty();
@@ -91,7 +99,7 @@ function showDetails($item) {
         $("#results").removeClass('hidden');
     } else {
         $("#result").empty();
-        $("#result").addClass('hidden');
+        $("#results").addClass('hidden');
     }
 
 }
@@ -100,7 +108,7 @@ function showDetails($item) {
 $(document).ready(function () {
 
     var $item = JSON.parse(localStorage.getItem('current_item'));
-    showDetails($item);
+    showDetails($item, true);
 
     getItems();
 
@@ -150,7 +158,7 @@ function loadButtons() {
         //empty selected
         localStorage.removeItem('current_item');
 
-        showDetails();
+        showDetails(null);
     });
 
     //edit

@@ -143,7 +143,7 @@ $("#delete a").click(function ($event) {
     localStorage.setItem('current_item', JSON.stringify($item));
 
     //to database
-    $db.items.put($item).then(function () {
+    $db.items_out.put($item).then(function () {
         //back to home
         window.location = 'index.html';
     });

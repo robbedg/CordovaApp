@@ -37,7 +37,10 @@ function pullData($address) {
                 $("#debug").append($val['id'] + '<br />');
                 $attr.push($val);
             });
-            $db.items.bulkPut($attr);
+
+            $db.items.clear().then(function () {
+                $db.items.bulkAdd($attr);
+            });
         })
         .fail(function (jqXHR, textstatus) {
             $("#debug").append(textstatus);
@@ -57,7 +60,10 @@ function pullData($address) {
         $($response.data).each(function ($i, $val) {
             $loc.push({ id: $val['id'], name: $val['name'] });
         });
-        $db.locations.bulkPut($loc);
+
+        $db.locations.clear().then(function () {
+            $db.locations.bulkAdd($loc);
+        });
     });
 
     //ajax get categories
@@ -73,6 +79,9 @@ function pullData($address) {
         $($response.data).each(function ($i, $val) {
             $cat.push({ id: $val['id'], name: $val['name'] });
         });
-        $db.categories.bulkPut($cat);
+
+        $db.categories.clear().then(function () {
+            $db.categories.bulkAdd($cat);
+        });
     });
 }
