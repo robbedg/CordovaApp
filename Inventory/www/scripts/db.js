@@ -3,10 +3,10 @@
 var $db = new Dexie('Inventory');
 
 $db.version(1).stores({
-    attributes: 'id,attributes',
+    items: 'id,category,category_id,location,location_id,attributes,created_on',
     locations: 'id,name',
     categories: 'id,name',
-    items: 'id,category,location,attributes,action'
+    items_out: 'id,category,location,attributes,action'
 });
 
 function getDB() {

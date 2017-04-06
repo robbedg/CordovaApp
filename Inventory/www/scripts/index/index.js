@@ -17,24 +17,20 @@ $("#scan").click(function ($event) {
             var $item = new Object();
 
             //get results
-            var $info = $result.text.split(',', 3);
+            $item.id = $result.text;
 
-            $db.items.where('id').equals($info[0]).count(function ($count) {
+            $db.items.where('id').equals($item.id).count(function ($count) {
                 console.log($count);
                 //not yet modified
                 if ($count === 0) {
-                    //fill object
-                    $item.id = $info[0];
-                    $item.location = $info[1];
-                    $item.category = $info[2];
 
-                    //get attr.
-                    $db.attributes
+                    //get items
+                    $db.items
                         .where('id')
-                        .equals($info[0])
+                        .equals($item.id)
                         .first(function ($result) {
                             //add to objects
-                            $item.attributes = $result['attributes'];
+                            $item = $result;
 
                             //store item
                             localStorage.setItem('current_item', JSON.stringify($item));
@@ -47,7 +43,7 @@ $("#scan").click(function ($event) {
                 //already been modified
                 else {
                     //get item
-                    $db.items.where('id').equals($info[0]).first(function ($result) {
+                    $db.items_out.where('id').equals($item.id).first(function ($result) {
                         $item = $result;
                         console.log($item, $result);
 
@@ -62,9 +58,9 @@ $("#scan").click(function ($event) {
             });
 
             //add data to hidden fields
-            $("#item_id").val($info[0]);
-            $("#location").val($info[1]);
-            $("#category").val($info[2]);
+            $("#item_id").val($item.id);
+            $("#location").val($item.location);
+            $("#category").val($item.category);
 
         },
         function ($error) {
@@ -113,7 +109,7 @@ $(document).ready(function () {
 //get items from localstorage
 function getItems() {
 
-    $db.items.toArray(function ($items) {
+    $db.items_out.toArray(function ($items) {
         //empty table
         $("#table tbody").empty();
 
@@ -146,7 +142,7 @@ function loadButtons() {
         var $id = $(this).parent().parent().find('td').first().text();
 
         //delete from db
-        $db.items.where('id').equals($id).delete();
+        $db.items_out.where('id').equals($id).delete();
 
         //delete from table
         $(this).parent().parent().remove();
@@ -166,7 +162,7 @@ function loadButtons() {
         var $id = $(this).parent().parent().find('td').first().text();
 
         //load in localstorage
-        $db.items.where('id').equals($id).first(function ($item) {
+        $db.items_out.where('id').equals($id).first(function ($item) {
             localStorage.setItem('current_item', JSON.stringify($item));
             window.location = "edit.html";
         });

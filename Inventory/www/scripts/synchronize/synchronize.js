@@ -20,6 +20,8 @@ function pullData($address) {
     var $data_attributes = new Object();
     $data_attributes.search = null;
     $data_attributes.attributes = true;
+    $data_attributes.location = true;
+    $data_attributes.category = true;
     
     $.ajax({
         url: $address + '/index.php/items/get',
@@ -33,9 +35,9 @@ function pullData($address) {
             var $attr = new Array();
             $($response.data).each(function ($i, $val) {
                 $("#debug").append($val['id'] + '<br />');
-                $attr.push({ id: $val['id'], attributes: $val['attributes'] });
+                $attr.push($val);
             });
-            $db.attributes.bulkPut($attr);
+            $db.items.bulkPut($attr);
         })
         .fail(function (jqXHR, textstatus) {
             $("#debug").append(textstatus);
