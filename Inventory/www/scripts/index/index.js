@@ -221,10 +221,10 @@ function loadButtons() {
         $event.preventDefault();
 
         //get id
-        var $id = $(this).parent().parent().find('td').first().text();
+        var $id = Number($(this).parent().parent().attr('data-id'));
 
         //load in localstorage
-        $db.items_out.where('id').equals($id).first(function ($item) {
+        $db.items_out.where('prim_key').equals($id).first(function ($item) {
             localStorage.setItem('current_item', JSON.stringify($item));
             window.location = "edit.html";
         });
