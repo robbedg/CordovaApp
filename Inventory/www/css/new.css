@@ -1,1 +1,52 @@
-﻿
+﻿#item_id_title {
+    float: left;
+}
+
+#delete {
+    float: right;
+}
+
+fieldset {
+    width: 100%;
+}
+
+legend {
+    margin-bottom: 1rem;
+}
+
+.form-horizontal label.control-label {
+    padding-top: 0rem;
+    margin-bottom: 0.5rem;
+}
+
+select.form-control {
+    margin-bottom: 1rem;
+}
+
+.attribute {
+    padding-bottom: 6rem;
+}
+
+.attribute-key {
+    width: calc(50% - 4rem);
+    float: left;
+    margin-right: 2rem;
+}
+
+.attribute-value {
+    width: calc(50% - 4rem);
+    float: left;
+}
+
+.attribute-delete {
+    float: right;
+}
+
+#add {
+    float: left;
+}
+
+#save {
+    margin-top: 1rem;
+    float: right;
+}

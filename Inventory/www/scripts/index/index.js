@@ -116,15 +116,56 @@ $(document).ready(function () {
 
 //get items from localstorage
 function getItems() {
+    //empty table
+    $("#table tbody").empty();
 
+    //locations
+    $db.locations_out.toArray(function ($locations) {
+        //fill table
+        $($locations).each(function ($index, $element) {
+            $("#table tbody")
+                .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'location')
+                    .append($('<td />').append('Location'))
+                    .append($('<td />').append(''))
+                    .append($('<td />').append($element['name']))
+                    .append($('<td />').append(''))
+                    .append($('<td />').append($element['action']))
+                    .append($('<td />')
+                        .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
+                    )
+                );
+        });
+    }).then(function () {
+        loadButtons();
+    });
+
+    //categories
+    $db.categories_out.toArray(function ($categories) {
+        //fill table
+        $($categories).each(function ($index, $element) {
+            $("#table tbody")
+                .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'category')
+                    .append($('<td />').append('Category'))
+                    .append($('<td />').append(''))
+                    .append($('<td />').append(''))
+                    .append($('<td />').append($element['name']))
+                    .append($('<td />').append($element['action']))
+                    .append($('<td />')
+                        .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
+                    )
+                );
+        });
+    }).then(function () {
+        loadButtons();
+    });
+
+    //items
     $db.items_out.toArray(function ($items) {
-        //empty table
-        $("#table tbody").empty();
-
         //fill table
         $($items).each(function ($index, $element) {
             $("#table tbody")
-                .append($('<tr />')
+                .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'item')
+                    .append($('<td />').append('Item'))
                     .append($('<td />').append($element['id']))
                     .append($('<td />').append($element['location']))
                     .append($('<td />').append($element['category']))
@@ -135,6 +176,7 @@ function getItems() {
                     )
                 );
         });
+    }).then(function () {
         loadButtons();
     });
 }
@@ -147,10 +189,22 @@ function loadButtons() {
         $event.preventDefault();
 
         //get id
-        var $id = $(this).parent().parent().find('td').first().text();
+        var $id = Number($(this).parent().parent().attr('data-id'));
+        //get kind
+        var $kind = $(this).parent().parent().attr('data-kind');
+        console.log($id);
+        console.log($kind);
 
-        //delete from db
-        $db.items_out.where('id').equals($id).delete();
+        //what?
+        if ($kind === 'location') {
+            $db.locations_out.where('prim_key').equals($id).delete();
+        } else if ($kind === 'category') {
+            $db.categories_out.where('prim_key').equals($id).delete();
+        } else if ($kind === 'item') {
+            console.log('start');
+            $db.items_out.where('prim_key').equals($id).delete();
+            console.log('success');
+        }
 
         //delete from table
         $(this).parent().parent().remove();

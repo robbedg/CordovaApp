@@ -63,17 +63,37 @@
                 <legend>Options</legend>
 
                 <!-- select what -->
-                <label for="what_select" class="control-label">Create</label>
-                <select class="form-control" id="what_select">
-                    <option value="category">Category</option>
-                    <option value="item">Item</option>
-                    <option value="location">Location</option>
-                </select>
+                <div id="what">
+                    <label for="what_select" class="control-label">Create</label>
+                    <select class="form-control" id="what_select">
+                        <option value="category">Category</option>
+                        <option value="item">Item</option>
+                        <option value="location">Location</option>
+                    </select>
+                </div>
+
+                <!-- select name -->
+                <div id="name">
+                    <label for="name_select" class="control-label">Name</label>
+                    <input type="text" class="form-control" id="name_select" placeholder="Name..." />
+                </div>
+
+                <!-- select location -->
+                <div id="location" class="hidden">
+                    <label for="location_select" class="control-label">Location</label>
+                    <select class="form-control" id="location_select">
+                        <!-- data -->
+                    </select>
+                </div>
 
                 <!-- select category -->
-                <label for="name_select" class="control-label">Name</label>
-                <input type="text" class="form-control" id="name_select" placeholder="Name..." />
-                
+                <div id="category" class="hidden">
+                    <label for="category_select" class="control-label">Category</label>
+                    <select class="form-control" id="category_select">
+                        <!-- data -->
+                    </select>
+                </div>
+
             </fieldset>
             <fieldset id="add-attributes" class="hidden">
                 <!-- title -->
@@ -82,10 +102,10 @@
                 <!-- attributes -->
                 <div id="attributes">
                     <!-- data -->
+                    <a href="#" class="btn btn-success btn-lg" id="add"><span class="fa fa-plus"></span></a>
                 </div>
             </fieldset>
             <fieldset>
-                <a href="#" class="btn btn-success btn-lg" id="add"><span class="fa fa-plus"></span></a>
                 <a href="#" class="btn btn-primary btn-lg" id="save"><span class="fa fa-save"></span></a>
             </fieldset>
         </div>
@@ -101,6 +121,7 @@
     <script src="scripts/dexie.min.js"></script>
     <script src="scripts/db.js"></script>
 
+    <script src="scripts/new/dbactions.js"></script>
     <script src="scripts/new/new.js"></script>
     
 </body>
