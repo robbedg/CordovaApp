@@ -40,7 +40,7 @@ function loadDelete() {
         $event.preventDefault();
 
         $(this).parent().remove();
-    })
+    });
 }
 
 /**
