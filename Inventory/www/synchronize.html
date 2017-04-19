@@ -16,6 +16,7 @@
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bootstrap/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="css/bootstrap/bootstrap.spacelab.min.css" rel="stylesheet" />
+    <link href="css/synchronize.css" rel="stylesheet" />
 </head>
 <body>
     <!-- header -->
@@ -52,20 +53,25 @@
         <!-- title -->
         <h1 class="hidden">Inventory</h1>
 
-        <!-- download -->
-        <div id="download">
-            <a href="#" class="btn btn-primary btn-lg"><span class="fa fa-download"></span></a>
+        <div id="buttons" class="clearfix">
+            <!-- download -->
+            <div id="download">
+                <a href="#" class="btn btn-primary btn-lg"><span class="fa fa-download"></span> Download</a>
+            </div>
+
+            <!-- upload -->
+            <div id="upload">
+                <a href="#" class="btn btn-primary btn-lg"><span class="fa fa-upload"></span> Upload</a>
+            </div>
         </div>
 
-        <!-- upload -->
-        <div id="upload">
-            <a href="#" class="btn btn-primary btn-lg"><span class="fa fa-upload"></span></a>
+        <!-- visual feedback -->
+        <div id="feedback">
+            <div id="progress" class="progress">
+                <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <label id="feedback-text"> </label>
         </div>
-
-        <!-- debug -->
-        <p id="debug">
-            <!-- data -->
-        </p>
 
     </div>
     <!-- scripts -->

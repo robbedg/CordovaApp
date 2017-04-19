@@ -28,6 +28,11 @@ function pushData($address) {
     //object for data
     var $data = new Object();
 
+    //visual feedback
+    $("#progress").addClass('progress-striped').addClass('active');
+    $(".progress-bar").attr("style", "width: 100%")
+    $("#feedback-text").text('uploading');
+
     //get data from local DB
 
     //1st of chain
@@ -69,7 +74,11 @@ function pushData($address) {
             dataType: 'json',
             data: JSON.stringify($data)
         }).done(function ($response) {
-            console.log($response);
+                console.log($response);
+        }).always(function () {
+            //user feedback
+            $("#progress").removeClass('progress-striped').removeClass('active');
+            $("#feedback-text").text('done');
         });
     }
 }

@@ -1,0 +1,28 @@
+﻿#download {
+    display: inline-block;
+    float: left;
+    width: calc(50% - 1rem);
+}
+
+#download a, #upload a {
+    width: 100%;
+}
+
+#upload {
+    display: inline-block;
+    float: right;
+    width: calc(50% - 1rem);
+}
+
+#feedback {
+    margin-top: 2rem;
+}
+
+#progress {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#feedback-text {
+    float: right;
+}

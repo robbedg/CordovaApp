@@ -19,6 +19,11 @@ function pullData($address) {
     //get database connection
     var $db = getDB();
 
+    //show user
+    $("#progress").addClass('progress-striped').addClass('active');
+    $(".progress-bar").attr("style", "width: 100%")
+    $("#feedback-text").text('downloading');
+
     //ajax get data
     $.ajax({
         url: $address + '/index.php/synchronize/download',
@@ -39,5 +44,9 @@ function pullData($address) {
         $db.items.clear().then(function () {
             $db.items.bulkAdd($response['items']['data']);
         })
+    }).always(function () {
+        //user feedback
+        $("#progress").removeClass('progress-striped').removeClass('active');
+        $("#feedback-text").text('done');
     });
 }
