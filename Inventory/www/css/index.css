@@ -5,6 +5,9 @@
 /**
  * SCANNER
  **/
+#scanner {
+    margin-bottom: 10px;
+}
 #scanner button {
     width: 100%;
 }
@@ -16,45 +19,45 @@
 /** DETAILS **/
 #details {
     background-color: #f5f5f5;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-bottom: 0.8rem;
+    padding-left: 15.0px;
+    padding-right: 15.0px;
+    padding-bottom: 08.0px;
     border-radius: 4px;
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
 }
 
 #details h3 {
-    padding-top: 1rem;
+    padding-top: 10px;
 }
 
 #edit {
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
 }
 
 /** USE **/
 #use {
     background-color: #f5f5f5;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-bottom: 0.8rem;
+    padding-left: 15.0px;
+    padding-right: 15.0px;
+    padding-bottom: 8.0px;
     border-radius: 4px;
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
 }
 
 #use h3 {
-    padding-top: 1rem;
+    padding-top: 10px;
 }
 
 #use > div {
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 10px;
 }
 
 /*save*/
 #save {
-    padding-top: 1rem;
-    margin-bottom: 1rem;
+    padding-top: 10px;
+    margin-bottom: 10px;
 }
 
 #save a {
@@ -66,14 +69,16 @@
  **/
 #overview_table {
     background-color: #f5f5f5;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-bottom: 0.8rem;
+    padding: 15.0px;
     border-radius: 4px;
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
+}
+
+#table {
+    margin: 0;
 }
 
 #overview_table a {
     float: right;
-    margin-left: 1rem;
+    margin-left: 10px;
 }

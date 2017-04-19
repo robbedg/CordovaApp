@@ -28,6 +28,9 @@ function loadSave() {
 
         //save
         save();
+
+        //redirect
+        window.location = 'index.html';
     });
 }
 

@@ -2,13 +2,20 @@
  * GLOBAL
  **/
 html {
-    font-size: 62.5%;
+    font-size: 100%;
+}
+
+body {
+}
+
+nav {
+    margin-bottom: 10px;
 }
 
 #wrapper {
-    max-width: 150rem;
-    padding-left: 5rem;
-    padding-right: 5rem;
+    max-width: 1500px;
+    padding-left: 50px;
+    padding-right: 50px;
     margin: 0 auto;
 }
 
@@ -33,3 +40,7 @@ html {
     display: block;
 }
 /* close commented backslash hack */
+
+.hidden {
+    display: none;
+}
