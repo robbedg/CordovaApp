@@ -4,3 +4,6 @@
 /Inventory/AppPackages/*
 /Inventory/bin/*
 /Inventory/bld/*
+
+# VS
+/.vs/*
