@@ -29,8 +29,8 @@ function pushData($address) {
     var $data = new Object();
 
     //visual feedback
-    $("#progress").addClass('progress-striped').addClass('active');
-    $(".progress-bar").attr("style", "width: 100%")
+    $(".progress-bar").addClass('progress-bar-striped').addClass('progress-bar-animated');
+    $(".progress-bar").attr("style", "width: 100%");
     $("#feedback-text").text('uploading');
 
     //get data from local DB
@@ -77,7 +77,7 @@ function pushData($address) {
                 console.log($response);
         }).always(function () {
             //user feedback
-            $("#progress").removeClass('progress-striped').removeClass('active');
+            $(".progress-bar").removeClass('progress-bar-striped').removeClass('progress-bar-animated');
             $("#feedback-text").text('done');
         });
     }

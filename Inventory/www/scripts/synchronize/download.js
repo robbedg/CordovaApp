@@ -20,8 +20,8 @@ function pullData($address) {
     var $db = getDB();
 
     //show user
-    $("#progress").addClass('progress-striped').addClass('active');
-    $(".progress-bar").attr("style", "width: 100%")
+    $(".progress-bar").addClass('progress-bar-striped').addClass('progress-bar-animated');
+    $(".progress-bar").attr("style", "width: 100%");
     $("#feedback-text").text('downloading');
 
     //ajax get data
@@ -46,7 +46,7 @@ function pullData($address) {
         })
     }).always(function () {
         //user feedback
-        $("#progress").removeClass('progress-striped').removeClass('active');
+        $(".progress-bar").removeClass('progress-bar-striped').removeClass('progress-bar-animated');
         $("#feedback-text").text('done');
     });
 }
