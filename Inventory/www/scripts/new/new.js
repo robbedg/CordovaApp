@@ -50,6 +50,31 @@ function loadDelete() {
  * Functions for attributes on page
  **/
 function pageAttributes() {
+
+    //add button
+    $("#add").click(function ($event) {
+        //prevent default
+        $event.preventDefault();
+
+        //add attribute
+        $("#attributes")
+            .prepend(
+            $('<div class="attribute" />')
+                .append(
+                $('<input type="text" class="form-control attribute-key" placeholder="Attribute" />')
+                )
+                .append(
+                $('<input type="text" class="form-control attribute-value" placeholder="Value" />')
+                )
+                .append(
+                $('<a href="#" class="btn btn-danger attribute-delete" />').append('<span class="fa fa-close"></span>')
+                )
+            );
+
+        //attach event to delete buttons
+        loadDelete();
+    });
+
     //when item is selected, add ability to add attributes
     $("#what_select").change(function () {
         var $option = $(this);
@@ -64,29 +89,6 @@ function pageAttributes() {
             $("#location").removeClass('hidden');
             $("#category").removeClass('hidden');
 
-            //add button
-            $("#add").click(function ($event) {
-                //prevent default
-                $event.preventDefault();
-
-                //add attribute
-                $("#attributes")
-                    .prepend(
-                    $('<div class="attribute" />')
-                        .append(
-                        $('<input type="text" class="form-control attribute-key" placeholder="Attribute" />')
-                        )
-                        .append(
-                        $('<input type="text" class="form-control attribute-value" placeholder="Value" />')
-                        )
-                        .append(
-                        $('<a href="#" class="btn btn-danger attribute-delete" />').append('<span class="fa fa-close"></span>')
-                        )
-                    );
-
-                //attach event to delete buttons
-                loadDelete();
-            });
             //when item is not selected
         } else {
             //hide
