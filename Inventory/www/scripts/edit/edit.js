@@ -59,6 +59,9 @@ $(document).ready(function () {
 
     //load buttons
     loadDelete();
+
+    //reload nanoscroller
+    $(".nano").nanoScroller();
 });
 
 //load delete buttons

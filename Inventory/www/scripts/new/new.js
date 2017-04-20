@@ -73,6 +73,9 @@ function pageAttributes() {
 
         //attach event to delete buttons
         loadDelete();
+
+        //reload nanoscroller
+        $(".nano").nanoScroller();
     });
 
     //when item is selected, add ability to add attributes
@@ -99,5 +102,8 @@ function pageAttributes() {
             //don't hide
             $("#name").removeClass('hidden');
         }
+
+        //reload nanoscroller
+        $(".nano").nanoScroller();
     });
 }

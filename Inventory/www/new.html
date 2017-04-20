@@ -14,6 +14,7 @@
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/tether/tether.min.css" rel="stylesheet" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/nanoscroller.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
 
     <link href="css/new.css" rel="stylesheet" />
@@ -39,65 +40,66 @@
     </nav>
 
     <!-- content -->
-    <div id="wrapper">
-        <!-- title -->
-        <h1 class="hidden">Inventory</h1>
+    <div id="wrapper" class="nano">
+        <div class="nano-content">
+            <!-- title -->
+            <h1 class="hidden">Inventory</h1>
 
-        <h2>Create</h2>
+            <h2>Create</h2>
 
-        <div class="form-horizontal" id="data">
-            <fieldset>
-                <!-- title -->
-                <legend>Options</legend>
+            <div class="form-horizontal" id="data">
+                <fieldset>
+                    <!-- title -->
+                    <legend>Options</legend>
 
-                <!-- select what -->
-                <div id="what">
-                    <label for="what_select" class="control-label">Create</label>
-                    <select class="form-control" id="what_select">
-                        <option value="category">Category</option>
-                        <option value="item">Item</option>
-                        <option value="location">Location</option>
-                    </select>
-                </div>
+                    <!-- select what -->
+                    <div id="what">
+                        <label for="what_select" class="control-label">Create</label>
+                        <select class="form-control" id="what_select">
+                            <option value="category">Category</option>
+                            <option value="item">Item</option>
+                            <option value="location">Location</option>
+                        </select>
+                    </div>
 
-                <!-- select name -->
-                <div id="name">
-                    <label for="name_select" class="control-label">Name</label>
-                    <input type="text" class="form-control" id="name_select" placeholder="Name..." />
-                </div>
+                    <!-- select name -->
+                    <div id="name">
+                        <label for="name_select" class="control-label">Name</label>
+                        <input type="text" class="form-control" id="name_select" placeholder="Name..." />
+                    </div>
 
-                <!-- select location -->
-                <div id="location" class="hidden">
-                    <label for="location_select" class="control-label">Location</label>
-                    <select class="form-control" id="location_select">
+                    <!-- select location -->
+                    <div id="location" class="hidden">
+                        <label for="location_select" class="control-label">Location</label>
+                        <select class="form-control" id="location_select">
+                            <!-- data -->
+                        </select>
+                    </div>
+
+                    <!-- select category -->
+                    <div id="category" class="hidden">
+                        <label for="category_select" class="control-label">Category</label>
+                        <select class="form-control" id="category_select">
+                            <!-- data -->
+                        </select>
+                    </div>
+
+                </fieldset>
+                <fieldset id="add-attributes" class="hidden">
+                    <!-- title -->
+                    <legend>Attritbutes</legend>
+
+                    <!-- attributes -->
+                    <div id="attributes">
                         <!-- data -->
-                    </select>
-                </div>
-
-                <!-- select category -->
-                <div id="category" class="hidden">
-                    <label for="category_select" class="control-label">Category</label>
-                    <select class="form-control" id="category_select">
-                        <!-- data -->
-                    </select>
-                </div>
-
-            </fieldset>
-            <fieldset id="add-attributes" class="hidden">
-                <!-- title -->
-                <legend>Attritbutes</legend>
-
-                <!-- attributes -->
-                <div id="attributes">
-                    <!-- data -->
-                    <a href="#" class="btn btn-success btn-lg" id="add"><span class="fa fa-plus"></span></a>
-                </div>
-            </fieldset>
-            <fieldset>
-                <a href="#" class="btn btn-primary btn-lg" id="save"><span class="fa fa-save"></span></a>
-            </fieldset>
+                        <a href="#" class="btn btn-success btn-lg" id="add"><span class="fa fa-plus"></span></a>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <a href="#" class="btn btn-primary btn-lg" id="save"><span class="fa fa-save"></span></a>
+                </fieldset>
+            </div>
         </div>
-
 
     </div>
     <!-- scripts -->
@@ -106,6 +108,7 @@
     <script src="scripts/jquery/jquery-3.1.1.min.js"></script>
     <script src="scripts/tether/tether.min.js"></script>
     <script src="scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="scripts/nanoscroller.min.js"></script>
 
     <script src="scripts/dexie.min.js"></script>
     <script src="scripts/db.js"></script>
@@ -113,5 +116,6 @@
     <script src="scripts/new/dbactions.js"></script>
     <script src="scripts/new/new.js"></script>
     
+    <script src="scripts/scripts.js"></script>
 </body>
 </html>

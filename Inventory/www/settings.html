@@ -13,6 +13,7 @@
     <!-- styling references -->
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/nanoscroller.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
 
 </head>
@@ -36,21 +37,23 @@
     </nav>
 
     <!-- content -->
-    <div id="wrapper">
+    <div id="wrapper" class="nano">
+         <div class="nano-content">
 
-        <!-- title -->
-        <h1 class="hidden">Settings</h1>
+            <!-- title -->
+            <h1 class="hidden">Settings</h1>
 
-        <div id="address" class="form-group">
-            <label class="control-label" for="address_in">Address</label>
-            <input class="form-control" id="address_in" type="text" placeholder="http://example.com" />
-        </div>
-        <div id="save">
-            <a href="#" class="btn btn-primary btn-lg"><span class="fa fa-save"></span></a>
-        </div>
+            <div id="address" class="form-group">
+                <label class="control-label" for="address_in">Address</label>
+                <input class="form-control" id="address_in" type="text" placeholder="http://example.com" />
+            </div>
+            <div id="save">
+                <a href="#" class="btn btn-primary btn-lg"><span class="fa fa-save"></span></a>
+            </div>
         
 
 
+        </div>
     </div>
     <!-- scripts -->
     <script src="cordova.js"></script>
@@ -58,10 +61,13 @@
     <script src="scripts/jquery/jquery-3.1.1.min.js"></script>
     <script src="scripts/tether/tether.min.js"></script>
     <script src="scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="scripts/nanoscroller.min.js"></script>
 
     <script src="scripts/dexie.min.js"></script>
     <script src="scripts/db.js"></script>
 
     <script src="scripts/settings/settings.js"></script>
+
+    <script src="scripts/scripts.js"></script>
 </body>
 </html>
