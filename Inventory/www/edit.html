@@ -7,14 +7,15 @@
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' http://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://platform.linkedin.com ">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://platform.linkedin.com ">
     <title>BarcodeReader</title>
 
     <!-- styling references -->
-    <link href="css/styles.css" rel="stylesheet" />
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/tether/tether.min.css" rel="stylesheet" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/nanoscroller.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
 
     <link href="css/edit.css" rel="stylesheet" />
 </head>
@@ -38,51 +39,52 @@
     </nav>
 
     <!-- content -->
-    <div id="wrapper">
-        <!-- title -->
-        <h1 class="hidden">Inventory</h1>
+    <div id="wrapper" class="nano">
+        <div class="nano-content">
+            <!-- title -->
+            <h1 class="hidden">Inventory</h1>
 
-        <h2 id="item_id_title"></h2>
+            <h2 id="item_id_title"></h2>
 
-        <!-- delete -->
-        <div id="delete">
-            <a href="#" class="btn btn-danger btn-lg"><span class="fa fa-trash"></span></a>
+            <!-- delete -->
+            <div id="delete">
+                <a href="#" class="btn btn-danger btn-lg"><span class="fa fa-trash"></span></a>
+            </div>
+
+            <div class="form-horizontal" id="data">
+                <!-- item id -->
+                <input id="item_id" type="hidden" />
+                <fieldset>
+                    <!-- title -->
+                    <legend>Edit</legend>
+
+                    <!-- select location -->
+                    <label for="location_select" class="control-label">Location</label>
+                    <select class="form-control" id="location_select">
+                        <!-- data -->
+                    </select>
+
+                    <!-- select category -->
+                    <label for="category_select" class="control-label">Category</label>
+                    <select class="form-control" id="category_select">
+                        <!-- data -->
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <legend>Attritbutes</legend>
+
+                    <!-- attributes -->
+                    <div id="attributes">
+                        <!-- data -->
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <a href="#" class="btn btn-success btn-lg" id="add"><span class="fa fa-plus"></span></a>
+                    <a href="#" class="btn btn-primary btn-lg" id="save"><span class="fa fa-save"></span></a>
+                </fieldset>
+            </div>
+
         </div>
-
-        <div class="form-horizontal" id="data">
-            <!-- item id -->
-            <input id="item_id" type="hidden" />
-            <fieldset>
-                <!-- title -->
-                <legend>Edit</legend>
-
-                <!-- select location -->
-                <label for="location_select" class="control-label">Location</label>
-                <select class="form-control" id="location_select">
-                    <!-- data -->
-                </select>
-
-                <!-- select category -->
-                <label for="category_select" class="control-label">Category</label>
-                <select class="form-control" id="category_select">
-                    <!-- data -->
-                </select>
-            </fieldset>
-            <fieldset>
-                <legend>Attritbutes</legend>
-
-                <!-- attributes -->
-                <div id="attributes">
-                    <!-- data -->
-                </div>
-            </fieldset>
-            <fieldset>
-                <a href="#" class="btn btn-success btn-lg" id="add"><span class="fa fa-plus"></span></a>
-                <a href="#" class="btn btn-primary btn-lg" id="save"><span class="fa fa-save"></span></a>
-            </fieldset>
-        </div>
-
-
     </div>
     <!-- scripts -->
     <script src="cordova.js"></script>
@@ -90,10 +92,12 @@
     <script src="scripts/jquery/jquery-3.1.1.min.js"></script>
     <script src="scripts/tether/tether.min.js"></script>
     <script src="scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="scripts/nanoscroller.min.js"></script>
 
     <script src="scripts/dexie.min.js"></script>
     <script src="scripts/db.js"></script>
     
     <script src="scripts/edit/edit.js"></script>
+    <script src="scripts/scripts.js"></script>
 </body>
 </html>

@@ -102,6 +102,9 @@ function showDetails($in) {
         $("#results").addClass('hidden');
     }
 
+    //refresh scrollbar
+    $(".nano").nanoScroller();
+
 }
 
 //on document load
@@ -137,6 +140,9 @@ function getItems() {
         });
     }).then(function () {
         loadButtons();
+
+        //refresh scrollbar
+        $(".nano").nanoScroller();
     });
 
     //categories
@@ -157,6 +163,9 @@ function getItems() {
         });
     }).then(function () {
         loadButtons();
+
+        //refresh scrollbar
+        $(".nano").nanoScroller();
     });
 
     //items
@@ -178,6 +187,9 @@ function getItems() {
         });
     }).then(function () {
         loadButtons();
+
+        //refresh scrollbar
+        $(".nano").nanoScroller();
     });
 }
 

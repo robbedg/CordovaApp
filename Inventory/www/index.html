@@ -7,15 +7,17 @@
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' http://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
     <title>BarcodeReader</title>
 
     <!-- styling references -->
     <link href="css/font-awesome.min.css" rel="stylesheet" />
-    <link href="css/tether/tether.min.css" rel="stylesheet" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/nanoscroller.css" rel="stylesheet" />
+
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/index.css" rel="stylesheet" />
+    
 </head>
 <body>
     <!-- header -->
@@ -39,49 +41,52 @@
     </nav>
 
     <!-- content -->
-    <div id="wrapper">
-        <!-- title -->
-        <h1 class="hidden">Inventory</h1>
+    <div id="wrapper" class="nano">
+        <div class="nano-content">
+            <!-- title -->
+            <h1 class="hidden">Inventory</h1>
         
-        <!-- scanner -->
-        <div id="scanner">
-            <button id="scan" class="btn btn-primary btn-lg">Scan</button>
-        </div>
+            <!-- scanner -->
+            <div id="scanner">
+                <button id="scan" class="btn btn-primary btn-lg">Scan</button>
+            </div>
 
-        <!-- details -->
-        <div id="results" class="">
-            <h2>Results</h2>
+            <!-- details -->
+            <div id="results" class="">
+                <h2>Results</h2>
 
-            <div id="details">
-                <h3>Details</h3>
-                <p id="result"></p>
-                <a href="edit.html" class="btn btn-primary btn-lg" id="edit">Edit</a>
-            </div>  
-        </div>
+                <div id="details">
+                    <h3>Details</h3>
+                    <p id="result"></p>
+                    <a href="edit.html" class="btn btn-primary btn-lg" id="edit">Edit</a>
+                </div>  
+            </div>
 
-        <!-- overview -->
-        <div id="overview">
-            <h2>Overview</h2>
-            <div id="overview_table">
-                <h3 class="hidden">Overview Table</h3>
-                <table class="table table-striped table-hover" id="table">
-                    <thead>
-                        <tr>
-                            <th>Changed</th>
-                            <th>ID</th>
-                            <th>Location</th>
-                            <th>Category</th>
-                            <th>Action</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- data -->
-                    </tbody>
-                </table>
+            <!-- overview -->
+            <div id="overview">
+                <h2>Overview</h2>
+                <div id="overview_table">
+                    <h3 class="hidden">Overview Table</h3>
+                    <table class="table table-striped table-hover" id="table">
+                        <thead>
+                            <tr>
+                                <th>Changed</th>
+                                <th>ID</th>
+                                <th>Location</th>
+                                <th>Category</th>
+                                <th>Action</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- data -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+
     <!-- scripts -->
     <script src="cordova.js"></script>
     <script src="scripts/platformOverrides.js"></script>
@@ -89,9 +94,13 @@
     <script src="scripts/tether/tether.min.js"></script>
     <script src="scripts/bootstrap/bootstrap.min.js"></script>
     
+    <script src="scripts/nanoscroller.min.js"></script>
+
     <script src="scripts/dexie.min.js"></script>
     <script src="scripts/db.js"></script>
     
     <script src="scripts/index/index.js"></script>
+    <script src="scripts/scripts.js"></script>
 </body>
+
 </html>

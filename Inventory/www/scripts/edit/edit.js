@@ -94,6 +94,8 @@ $("#add").click(function ($event) {
 
     //load buttons
     loadDelete();
+    //load scrollbar
+    $(".nano").nanoScroller();
 });
 
 //save
