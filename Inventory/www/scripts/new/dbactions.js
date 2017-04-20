@@ -49,51 +49,46 @@ function getLocationsCategories() {
  **/
 function save() {
     var $what = $("#what_select").val();
+    
     //object for db
     var $object = new Object;
     $object.action = 'Create';
 
     //what does user want to create?
-    switch ($what) {
-        case 'item':
-            $object.location = $("#location_select").val();
-            $object.category = $("#category_select").val();
-            $object.attributes = new Object();
+    if ($what === 'item') {
+        $object.location = $("#location_select").val();
+        $object.category = $("#category_select").val();
+        $object.attributes = new Object();
 
-            //attributes
-            $(".attribute").each(function () {
-                var $key = $(this).find(".attribute-key").first().val();
-                var $val = $(this).find(".attribute-value").first().val();
-                $object.attributes[$key] = $val;
-            });
-            
-            //to db
-            $db.items_out.add($object);
+        //attributes
+        $(".attribute").each(function () {
+            var $key = $(this).find(".attribute-key").first().val();
+            var $val = $(this).find(".attribute-value").first().val();
+            $object.attributes[$key] = $val;
+        });
 
-            //done
-            break;
+        //to db
+        $db.items_out.add($object).then(function () {
+            //redirect
+            window.location = 'index.html';
+        });
 
-        case 'location':
-            $object.name = $("#name_select").val();
+    } else if ($what === 'location') {
+        $object.name = $("#name_select").val();
 
-            //to db
-            $db.locations_out.add($object);
+        //to db
+        $db.locations_out.add($object).then(function () {
+            //redirect
+            window.location = 'index.html';
+        });
 
-            //done
-            break;
+    } else if ($what === 'category') {
+        $object.name = $("#name_select").val();
 
-        case 'category':
-            $object.name = $("#name_select").val();
-
-            //to db
-            $db.categories_out.add($object);
-
-            //done
-            break;
-
-        default:
-
-            //done
-            break;
+        //to db
+        $db.categories_out.add($object).then(function () {
+            //redirect
+            window.location = 'index.html';
+        });
     }
 }
