@@ -1,5 +1,6 @@
 {
-    "name": "Inventory",
-    "dependencies": {
-    }
+  "name": "Inventory",
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.6"
+  }
 }

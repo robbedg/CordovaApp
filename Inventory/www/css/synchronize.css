@@ -1,7 +1,7 @@
 ﻿#download {
     display: inline-block;
     float: left;
-    width: calc(50% - 1rem);
+    width: calc(50% - 10px);
 }
 
 #download a, #upload a {
@@ -11,16 +11,16 @@
 #upload {
     display: inline-block;
     float: right;
-    width: calc(50% - 1rem);
+    width: calc(50% - 10px);
 }
 
 #feedback {
-    margin-top: 2rem;
+    margin-top: 20px;
 }
 
 #progress {
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
 }
 
 #feedback-text {

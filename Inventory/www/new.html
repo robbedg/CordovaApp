@@ -7,116 +7,108 @@
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://platform.linkedin.com ">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval';">
     <title>BarcodeReader</title>
 
     <!-- styling references -->
-    <link href="css/styles.css" rel="stylesheet" />
     <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/tether/tether.min.css" rel="stylesheet" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/bootstrap/bootstrap-theme.min.css" rel="stylesheet" />
-    <link href="css/bootstrap/bootstrap.spacelab.min.css" rel="stylesheet" />
+    <link href="css/nanoscroller.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
 
     <link href="css/new.css" rel="stylesheet" />
 
 </head>
 <body>
     <!-- header -->
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html"><span class="fa fa-arrow-left"></span></a>
-            </div>
+    <nav class="navbar navbar-toggleable-xl navbar-inverse bg-inverse">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="index.html"><span class="fa fa-arrow-left"></span></a>
 
-            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-2" aria-expanded="false">
-                <ul class="nav navbar-nav">
-                    <!-- nav buttons-->
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto"></ul>
 
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- nav buttons -->
-                    <li class="active"><a href="#"><span class="fa fa-plus"></span></a></li>
-                    <li><a href="synchronize.html"><span class="fa fa-refresh"></span></a></li>
-                    <li><a href="settings.html"><span class="fa fa-cog"></span></a></li>
-                </ul>
-            </div>
+            <ul class="navbar-nav float-right">
+                <li class="nav-item active"><a class="nav-link" href="#"><span class="fa fa-plus"></span></a></li>
+                <li class="nav-item"><a class="nav-link" href="synchronize.html"><span class="fa fa-refresh"></span></a></li>
+                <li class="nav-item"><a class="nav-link" href="settings.html"><span class="fa fa-cog"></span></a></li>
+            </ul>
         </div>
     </nav>
 
     <!-- content -->
-    <div id="wrapper">
-        <!-- title -->
-        <h1 class="hidden">Inventory</h1>
+    <div id="wrapper" class="nano">
+        <div class="nano-content">
+            <!-- title -->
+            <h1 class="hidden">Inventory</h1>
 
-        <h2>Create</h2>
+            <h2>Create</h2>
 
-        <div class="form-horizontal" id="data">
-            <fieldset>
-                <!-- title -->
-                <legend>Options</legend>
+            <div class="form-horizontal" id="data">
+                <fieldset>
+                    <!-- title -->
+                    <legend>Options</legend>
 
-                <!-- select what -->
-                <div id="what">
-                    <label for="what_select" class="control-label">Create</label>
-                    <select class="form-control" id="what_select">
-                        <option value="category">Category</option>
-                        <option value="item">Item</option>
-                        <option value="location">Location</option>
-                    </select>
-                </div>
+                    <!-- select what -->
+                    <div id="what">
+                        <label for="what_select" class="control-label">Create</label>
+                        <select class="form-control" id="what_select">
+                            <option value="category">Category</option>
+                            <option value="item">Item</option>
+                            <option value="location">Location</option>
+                        </select>
+                    </div>
 
-                <!-- select name -->
-                <div id="name">
-                    <label for="name_select" class="control-label">Name</label>
-                    <input type="text" class="form-control" id="name_select" placeholder="Name..." />
-                </div>
+                    <!-- select name -->
+                    <div id="name">
+                        <label for="name_select" class="control-label">Name</label>
+                        <input type="text" class="form-control" id="name_select" placeholder="Name..." />
+                    </div>
 
-                <!-- select location -->
-                <div id="location" class="hidden">
-                    <label for="location_select" class="control-label">Location</label>
-                    <select class="form-control" id="location_select">
+                    <!-- select location -->
+                    <div id="location" class="hidden">
+                        <label for="location_select" class="control-label">Location</label>
+                        <select class="form-control" id="location_select">
+                            <!-- data -->
+                        </select>
+                    </div>
+
+                    <!-- select category -->
+                    <div id="category" class="hidden">
+                        <label for="category_select" class="control-label">Category</label>
+                        <select class="form-control" id="category_select">
+                            <!-- data -->
+                        </select>
+                    </div>
+
+                </fieldset>
+                <fieldset id="add-attributes" class="hidden">
+                    <!-- title -->
+                    <legend>Attritbutes</legend>
+
+                    <!-- attributes -->
+                    <div id="attributes">
                         <!-- data -->
-                    </select>
-                </div>
-
-                <!-- select category -->
-                <div id="category" class="hidden">
-                    <label for="category_select" class="control-label">Category</label>
-                    <select class="form-control" id="category_select">
-                        <!-- data -->
-                    </select>
-                </div>
-
-            </fieldset>
-            <fieldset id="add-attributes" class="hidden">
-                <!-- title -->
-                <legend>Attritbutes</legend>
-
-                <!-- attributes -->
-                <div id="attributes">
-                    <!-- data -->
-                    <a href="#" class="btn btn-success btn-lg" id="add"><span class="fa fa-plus"></span></a>
-                </div>
-            </fieldset>
-            <fieldset>
-                <a href="#" class="btn btn-primary btn-lg" id="save"><span class="fa fa-save"></span></a>
-            </fieldset>
+                        <a href="#" class="btn btn-success btn-lg" id="add"><span class="fa fa-plus"></span></a>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <a href="#" class="btn btn-primary btn-lg" id="save"><span class="fa fa-save"></span></a>
+                </fieldset>
+            </div>
         </div>
-
 
     </div>
     <!-- scripts -->
     <script src="cordova.js"></script>
     <script src="scripts/platformOverrides.js"></script>
     <script src="scripts/jquery/jquery-3.1.1.min.js"></script>
+    <script src="scripts/tether/tether.min.js"></script>
     <script src="scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="scripts/nanoscroller.min.js"></script>
 
     <script src="scripts/dexie.min.js"></script>
     <script src="scripts/db.js"></script>
@@ -124,5 +116,6 @@
     <script src="scripts/new/dbactions.js"></script>
     <script src="scripts/new/new.js"></script>
     
+    <script src="scripts/scripts.js"></script>
 </body>
 </html>

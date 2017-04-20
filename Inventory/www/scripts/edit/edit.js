@@ -59,6 +59,9 @@ $(document).ready(function () {
 
     //load buttons
     loadDelete();
+
+    //reload nanoscroller
+    $(".nano").nanoScroller();
 });
 
 //load delete buttons
@@ -94,6 +97,8 @@ $("#add").click(function ($event) {
 
     //load buttons
     loadDelete();
+    //load scrollbar
+    $(".nano").nanoScroller();
 });
 
 //save

@@ -2,13 +2,14 @@
  * GLOBAL
  **/
 html {
-    font-size: 62.5%;
+    font-size: 100%;
 }
 
+
 #wrapper {
-    max-width: 150rem;
-    padding-left: 5rem;
-    padding-right: 5rem;
+    max-width: 1500px;
+    padding-left: 50px;
+    padding-right: 50px;
     margin: 0 auto;
 }
 
@@ -33,3 +34,28 @@ html {
     display: block;
 }
 /* close commented backslash hack */
+
+.hidden {
+    display: none;
+}
+
+.nano {
+    width: 100%;
+    height: calc(100vh - 3.7rem);
+}
+
+.nano > .nano-content {
+    max-width: 1500px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    margin: 0 auto;
+}
+
+.nano > .nano-pane {
+    background: #888;
+}
+
+.nano > .nano-pane > .nano-slider {
+    background: #111;
+}

@@ -11,30 +11,30 @@ fieldset {
 }
 
 legend {
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
 }
 
 .form-horizontal label.control-label {
-    padding-top: 0rem;
-    margin-bottom: 0.5rem;
+    padding-top: 0px;
+    margin-bottom: 05.0px;
 }
 
 select.form-control {
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
 }
 
 .attribute {
-    padding-bottom: 6rem;
+    padding-bottom: 60px;
 }
 
 .attribute-key {
-    width: calc(50% - 4rem);
+    width: calc(50% - 40px);
     float: left;
-    margin-right: 2rem;
+    margin-right: 20px;
 }
 
 .attribute-value {
-    width: calc(50% - 4rem);
+    width: calc(50% - 40px);
     float: left;
 }
 
