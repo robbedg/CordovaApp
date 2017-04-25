@@ -11,7 +11,7 @@ $("#upload a").click(function ($event) {
     if (localStorage.getItem('settings') !== null) {
         var $settings = JSON.parse(localStorage.getItem('settings'));
         //push data
-        pushData($settings.address);
+        pushData($settings);
     } else {
         window.location('settings.html');
     }
@@ -20,7 +20,7 @@ $("#upload a").click(function ($event) {
 /**
  * Push data to main application
 **/
-function pushData($address) {
+function pushData($settings) {
 
     //get database connection
     var $db = getDB();
@@ -66,19 +66,45 @@ function pushData($address) {
         });
     }
 
+    //data for authentication
+    var $authdata = new Object();
+    $authdata.username = $settings.username;
+    $authdata.password = $settings.password;
+
+    //authenticate
     function upload($data) {
         $.ajax({
-            url: $address + '/index.php/synchronize/upload',
+            url: $settings.address + '/index.php/authenticate',
             crossDomain: true,
+            contentType: 'text/plain',
             type: 'POST',
             dataType: 'json',
-            data: JSON.stringify($data)
+            data: JSON.stringify($authdata)
         }).done(function ($response) {
-                console.log($response);
-        }).always(function () {
-            //user feedback
-            $(".progress-bar").removeClass('progress-bar-striped').removeClass('progress-bar-animated');
-            $("#feedback-text").text('done');
+            if ($response.success === true) {
+                startTransaction();
+            }
         });
+
+        //push data
+        function startTransaction() {
+            $.ajax({
+                xhrFields: {
+                    withCredentials: true
+                },
+                url: $settings.address + '/index.php/synchronize/upload',
+                crossDomain: true,
+                contentType: 'text/plain',
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify($data)
+            }).done(function ($response) {
+                console.log($response);
+            }).always(function () {
+                //user feedback
+                $(".progress-bar").removeClass('progress-bar-striped').removeClass('progress-bar-animated');
+                $("#feedback-text").text('done');
+            });
+        }
     }
 }

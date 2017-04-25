@@ -7,6 +7,7 @@ $(document).ready(function () {
         $settings = JSON.parse($check_settings);
 
         $('#address input').val($settings.address);
+        $('#username input').val($settings.username);
     }
 });
 
@@ -17,7 +18,8 @@ $("#save a").click(function ($event) {
 
     //set values
     $settings.address = $("#address input").val();
-    console.log($settings.address);
+    $settings.username = $("#username input").val();
+    $settings.password = $("#password input").val();
 
     //save
     localStorage.setItem('settings', JSON.stringify($settings));
