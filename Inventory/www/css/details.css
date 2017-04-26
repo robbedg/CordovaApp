@@ -1,0 +1,86 @@
+﻿h2 {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+#buttons {
+    float: right;
+    position:relative;
+}
+
+#last-loan {
+    list-style-type: none;
+}
+
+#details {
+    background-color: #f5f5f5;
+    padding: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+#details h3 {
+    margin-left: -15px;
+}
+
+#details table {
+    margin: 0;
+}
+
+#newnote {
+    padding: 15px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+}
+
+#newnote textarea.form-control {
+    border-radius: 20px 20px 0px 20px;
+    border-width: 1px;
+    overflow: hidden;
+    resize: none;
+    padding: 10px;
+    height: 98px; /*JavaScript !*/
+}
+
+#count {
+    display: inline-block;
+}
+
+#newnote button {
+    float: right;
+    margin-top: 10px;
+}
+
+#usernotes {
+    background-color: #f5f5f5;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+#usernotes .note {
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+#usernotes p {
+    background-color: #fff;
+    padding: 10px;
+    border-style: solid;
+    border-color: #ddd;
+    border-radius: 0px 20px 20px 20px;
+    border-width: 1px;
+    margin-bottom: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#usernotes .date {
+    float: right;
+}
