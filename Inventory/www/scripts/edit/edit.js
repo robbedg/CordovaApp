@@ -29,10 +29,22 @@ $(document).ready(function () {
         });
     });
 
+    $db.locations_out.toArray(function ($locations) {
+        $.each($locations, function ($key, $value) {
+            $("#location_select").append($('<option />').append($value.name));
+        });
+    });
+
     //set categories
     $("#category_select").empty();
 
     $db.categories.toArray(function ($categories) {
+        $.each($categories, function ($key, $value) {
+            $("#category_select").append($('<option />').append($value.name));
+        });
+    });
+
+    $db.categories_out.toArray(function ($categories) {
         $.each($categories, function ($key, $value) {
             $("#category_select").append($('<option />').append($value.name));
         });
@@ -117,7 +129,13 @@ $("#save").click(function ($event) {
     });
 
     //create item
-    var $item = { id: $("#item_id").val(), location: $("#location_select").val(), category: $("#category_select").val(), attributes: $attributes, action: 'Update' };
+    var $item = JSON.parse(localStorage.getItem('current_item'));
+    $item['location'] = $('#location_select').val();
+    $item['category'] = $('#category_select').val();
+    $item['attributes'] = $attributes;
+    if ($item['action'] !== 'Create') {
+        $item['action'] = 'Update';
+    }
 
     //to storage
     localStorage.setItem('current_item', JSON.stringify($item));
