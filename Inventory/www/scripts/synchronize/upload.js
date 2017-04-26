@@ -61,6 +61,15 @@ function pushData($settings) {
         $db.items_out.toArray(function ($items) {
             $data['items'] = $items;
         }).then(function () {
+            //4th of chain
+            getUsernotes();
+        });
+    }
+
+    function getUsernotes() {
+        $db.usernotes_out.toArray(function ($usernotes) {
+            $data['usernotes'] = $usernotes;
+        }).then(function () {
             //start upload
             upload($data);
         });

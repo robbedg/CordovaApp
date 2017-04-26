@@ -22,6 +22,7 @@ $("#scan").click(function ($event) {
 
             $db.items_out.where('id').equals($item.id).count(function ($count) {
                 console.log($count);
+
                 //not yet modified
                 if ($count === 0) {
 
@@ -175,13 +176,36 @@ function getItems() {
             $("#table tbody")
                 .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'item')
                     .append($('<td />').append('Item'))
-                    .append($('<td />').append($element['id']))
+                    .append($('<td />').append($('<a />').attr('href', '#').append($element['id'])))
                     .append($('<td />').append($element['location']))
                     .append($('<td />').append($element['category']))
                     .append($('<td />').append($element['action']))
                     .append($('<td />')
                         .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
                         .append($('<a href="#" class="btn btn-primary btn-sm edit" /a>').append('<span class="fa fa-edit"></span>'))
+                    )
+                );
+        });
+    }).then(function () {
+        loadButtons();
+
+        //refresh scrollbar
+        $(".nano").nanoScroller();
+    });
+
+    //usernotes
+    $db.usernotes_out.toArray(function ($usernotes) {
+        //fill table
+        $($usernotes).each(function ($index, $element) {
+            $("#table tbody")
+                .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'usernote')
+                    .append($('<td />').append('Comment'))
+                    .append($('<td />').append($('<a />').attr('href', '#').append($element['item_id'])))
+                    .append($('<td />').append($element['']))
+                    .append($('<td />').append($element['']))
+                    .append($('<td />').append($element['action']))
+                    .append($('<td />')
+                        .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
                     )
                 );
         });
@@ -204,8 +228,6 @@ function loadButtons() {
         var $id = Number($(this).parent().parent().attr('data-id'));
         //get kind
         var $kind = $(this).parent().parent().attr('data-kind');
-        console.log($id);
-        console.log($kind);
 
         //what?
         if ($kind === 'location') {
@@ -213,9 +235,9 @@ function loadButtons() {
         } else if ($kind === 'category') {
             $db.categories_out.where('prim_key').equals($id).delete();
         } else if ($kind === 'item') {
-            console.log('start');
             $db.items_out.where('prim_key').equals($id).delete();
-            console.log('success');
+        } else if ($kind === 'usernote') {
+            $db.usernotes_out.where('prim_key').equals($id).delete();
         }
 
         //delete from table
