@@ -109,7 +109,7 @@
   <preference name="WindowsStoreDisplayName" value="Inventory" />
   <access origin="*" />
   <preference name="Fullscreen" value="False" />
-  <access origin="http://inventory.local/*" />
+  <access origin="https://inventory.local" />
   <vs:toolsetVersion>6.3.1</vs:toolsetVersion>
   <engine name="android" spec="5.2.1" />
   <engine name="ios" spec="4.2.0" />

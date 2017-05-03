@@ -12,6 +12,9 @@ $(document).ready(function () {
         $item = JSON.parse($item);
     }
 
+    //get newly created notes
+    get_new_usernotes($item);
+
     //get sychronized notes
     $($item['usernotes']).each(function ($index, $el) {
         //create notes
@@ -23,9 +26,6 @@ $(document).ready(function () {
                 .append($('<span class="date" />').append($el['created_on']))
             );
     });
-
-    //get newly created notes
-    get_new_usernotes($item);
 });
 
 //get newly created notes

@@ -3,6 +3,23 @@
 */
 
 /**
+ * SEARCH
+ **/
+
+#search {
+    margin-bottom: 10px;
+}
+
+#search input {
+    width: calc(100% - 80px);
+    float: left;
+}
+
+#search button {
+    float: right;
+}
+
+/**
  * SCANNER
  **/
 #scanner {

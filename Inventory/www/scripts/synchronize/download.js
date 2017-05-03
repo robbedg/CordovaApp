@@ -19,6 +19,7 @@ function pullData($settings) {
     //get database connection
     var $db = getDB();
 
+    //authentication data
     var $authdata = new Object();
     $authdata.username = $settings.username;
     $authdata.password = $settings.password;

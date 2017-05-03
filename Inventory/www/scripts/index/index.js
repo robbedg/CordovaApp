@@ -2,11 +2,19 @@
 
 var $db = getDB();
 
-//localStorage.clear();
-$db.items.where('id').equals('0000000001').first(function ($_item) {
-    localStorage.setItem('current_item', JSON.stringify($_item));
-});
+/**
+ * Search button
+ **/
+$("#search button").click(function ($event) {
+    //prevent default
+    $event.preventDefault();
 
+    searchOnID($("#search input").val());
+})
+
+/**
+ * Scan button event
+**/
 $("#scan").click(function ($event) {
     //prevent default
     $event.preventDefault();
@@ -14,65 +22,67 @@ $("#scan").click(function ($event) {
     //when scan success
     cordova.plugins.barcodeScanner.scan(
         function ($result) {
-
-            //make object
-            var $item = new Object();
-
-            //get results
-            $item.id = $result.text;
-            console.log($item);
-
-            $db.items_out.where('id').equals($item.id).count(function ($count) {
-                console.log($count);
-
-                //not yet modified
-                if ($count === 0) {
-
-                    //get items
-                    $db.items
-                        .where('id')
-                        .equals($item.id)
-                        .first(function ($result) {
-                            console.log($result);
-                            //add to objects
-                            $item = $result;
-
-                            //store item
-                            localStorage.setItem('current_item', JSON.stringify($item));
-
-                            //show results
-                            console.log($item);
-                            showDetails($item);
-                        });
-                }
-                //already been modified
-                else {
-                    //get item
-                    $db.items_out.where('id').equals($item.id).first(function ($result) {
-                        $item = $result;
-                        console.log($item, $result);
-
-                        //store item
-                        localStorage.setItem('current_item', JSON.stringify($item));
-
-                        //show results
-                        console.log($item);
-                        showDetails($item);
-                    });
-                }
-            });
-
-            //add data to hidden fields
-            $("#item_id").val($item.id);
-            $("#location").val($item.location);
-            $("#category").val($item.category);
-
+            searchOnID($result.text);
         },
         function ($error) {
             $("#result").text("Scanning failed: " + $error);
         }
     );
 });
+
+function searchOnID($result) {
+    //make object
+    var $item = new Object();
+
+    //get results
+    $item.id = $result;
+    console.log($item);
+
+    $db.items_out.where('id').equals($item.id).count(function ($count) {
+        console.log($count);
+
+        //not yet modified
+        if ($count === 0) {
+
+            //get items
+            $db.items
+                .where('id')
+                .equals($item.id)
+                .first(function ($result) {
+                    console.log($result);
+                    //add to objects
+                    $item = $result;
+
+                    //store item
+                    localStorage.setItem('current_item', JSON.stringify($item));
+
+                    //show results
+                    console.log($item);
+                    showDetails($item);
+                });
+        }
+        //already been modified
+        else {
+            //get item
+            $db.items_out.where('id').equals($item.id).first(function ($result) {
+                $item = $result;
+                console.log($item, $result);
+
+                //store item
+                localStorage.setItem('current_item', JSON.stringify($item));
+
+                //show results
+                console.log($item);
+                showDetails($item);
+            });
+        }
+    });
+
+    //add data to hidden fields
+    $("#item_id").val($item.id);
+    $("#location").val($item.location);
+    $("#category").val($item.category);
+}
 
 function showDetails($in) {
     var $item = $in;
@@ -113,8 +123,10 @@ function showDetails($in) {
 //on document load
 $(document).ready(function () {
 
-    var $item = JSON.parse(localStorage.getItem('current_item'));
-    showDetails($item, true);
+    if (localStorage.getItem('current_item') !== null) {
+        var $item = JSON.parse(localStorage.getItem('current_item'));
+        showDetails($item, true);
+    }
 
     getItems();
 
