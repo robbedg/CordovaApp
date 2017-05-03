@@ -25,13 +25,21 @@ $(document).ready(function () {
 
     $db.locations.toArray(function ($locations) {
         $.each($locations, function ($key, $value) {
-            $("#location_select").append($('<option />').append($value.name));
+            if ($value.name !== $item.location) {
+                $("#location_select").append($('<option />').append($value.name));
+            } else {
+                $("#location_select").append($('<option />').append($value.name).attr('selected', 'selected'));
+            }
         });
     });
 
     $db.locations_out.toArray(function ($locations) {
         $.each($locations, function ($key, $value) {
-            $("#location_select").append($('<option />').append($value.name));
+            if ($value.name !== $item.location) {
+                $("#location_select").append($('<option />').append($value.name));
+            } else {
+                $("#location_select").append($('<option />').append($value.name).attr('selected', 'selected'));
+            }
         });
     });
 
@@ -40,13 +48,21 @@ $(document).ready(function () {
 
     $db.categories.toArray(function ($categories) {
         $.each($categories, function ($key, $value) {
-            $("#category_select").append($('<option />').append($value.name));
+            if ($value.name !== $item.category) {
+                $("#category_select").append($('<option />').append($value.name));
+            } else {
+                $("#category_select").append($('<option />').append($value.name).attr('selected', 'selected'));
+            }   
         });
     });
 
     $db.categories_out.toArray(function ($categories) {
         $.each($categories, function ($key, $value) {
-            $("#category_select").append($('<option />').append($value.name));
+            if ($value.name !== $item.category) {
+                $("#category_select").append($('<option />').append($value.name));
+            } else {
+                $("#category_select").append($('<option />').append($value.name).attr('selected', 'selected'));
+            } 
         });
     });
 
