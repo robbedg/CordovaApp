@@ -55,23 +55,26 @@ function pullData($settings) {
             type: 'GET'
         }).done(function ($response) {
             //locations
-            $db.locations.clear().then(function () {
-                $db.locations.bulkAdd($response['locations']['data']);
-            });
+            $db.transaction('rw', $db.locations, $db.categories, $db.items, function () {
+                //locations
+                $db.locations.clear().then(function () {
+                    $db.locations.bulkAdd($response['locations']['data']);
+                });
 
-            //categories
-            $db.categories.clear().then(function () {
-                $db.categories.bulkAdd($response['categories']['data']);
-            });
+                //categories
+                $db.categories.clear().then(function () {
+                    $db.categories.bulkAdd($response['categories']['data']);
+                });
 
-            //items
-            $db.items.clear().then(function () {
-                $db.items.bulkAdd($response['items']['data']);
-            })
-        }).always(function () {
-            //user feedback
-            $(".progress-bar").removeClass('progress-bar-striped').removeClass('progress-bar-animated');
-            $("#feedback-text").text('done');
+                //items
+                $db.items.clear().then(function () {
+                    $db.items.bulkAdd($response['items']['data']);
+                });
+            }).then(function () {
+                //user feedback
+                $(".progress-bar").removeClass('progress-bar-striped').removeClass('progress-bar-animated');
+                $("#feedback-text").text('done');
+            });
         });
     }
 }

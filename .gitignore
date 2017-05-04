@@ -7,3 +7,6 @@
 
 # VS
 /.vs/*
+
+# webstorm
+/.idea/*
