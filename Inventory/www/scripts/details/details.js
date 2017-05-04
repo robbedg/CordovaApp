@@ -32,15 +32,22 @@ $(document).ready(function () {
         );
 
     //last loan
-    $("#last-loan")
-        .append(
-            $('<li />').append($item['last_loan_lastname'] + ' ' + $item['last_loan_firstname'])
-        )
-        .append(
-            $('<li />').append($item['last_loan_from'] + ' <span class="fa fa-arrow-right"></span> ' + $item['last_loan_until'])
-        );
+    if ($item['last_loan_firstname'] !== null) {
+        $("#last-loan")
+            .append(
+                $('<li />').append($item['last_loan_lastname'] + ' ' + $item['last_loan_firstname'])
+            )
+            .append(
+                $('<li />').append($item['last_loan_from'] + ' <span class="fa fa-arrow-right"></span> ' + $item['last_loan_until'])
+            );
+    } else {
+        $("#last-loan")
+            .append(
+                $('<li />').append('Unavailable')
+            );
+    }
 
-
+    //get attributes
     $.each($item.attributes, function ($key, $value) {
         $("#table")
             .append(
