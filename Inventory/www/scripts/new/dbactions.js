@@ -56,6 +56,7 @@ function save() {
 
     //what does user want to create?
     if ($what === 'item') {
+        $object.name = $("#name_select").val();
         $object.location = $("#location_select").val();
         $object.category = $("#category_select").val();
         $object.attributes = new Object();

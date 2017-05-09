@@ -44,29 +44,41 @@ function searchOnID($result) {
         //not yet modified
         if ($count === 0) {
 
-            //get items
-            $db.items
-                .where('id')
-                .equals($item.id)
-                .first(function ($result) {
-                    console.log($result);
-                    //add to objects
-                    $item = $result;
+            //count
+            $db.items.where('id').equals($item.id).count(function ($count2) {
+                //if not exist
+                if ($count2 === 0) {
+                    $("#result").empty();
+                    $("#results").addClass('hidden');
+                //if exists
+                } else {
+                    $("#results").removeClass('hidden');
+                    //get items
+                    $db.items
+                        .where('id')
+                        .equals($item.id)
+                        .first(function ($result) {
+                            console.log($result);
+                            //add to objects
+                            $item = $result;
 
-                    //store item
-                    localStorage.setItem('current_item', JSON.stringify($item));
+                            //store item
+                            localStorage.setItem('current_item', JSON.stringify($item));
 
-                    //show results
-                    console.log($item);
-                    showDetails($item);
-                });
+                            //show results
+                            console.log($item);
+                            showDetails($item);
+                        });
+                }
+                
+            });
         }
         //already been modified
         else {
+            $("#results").removeClass('hidden');
             //get item
             $db.items_out.where('id').equals($item.id).first(function ($result) {
                 $item = $result;
-                console.log($item, $result);
 
                 //store item
                 localStorage.setItem('current_item', JSON.stringify($item));
@@ -87,6 +99,7 @@ function searchOnID($result) {
 function showDetails($in) {
     var $item = $in;
 
+  
     //get current item
     var $json = localStorage.getItem('current_item');
 
@@ -95,14 +108,14 @@ function showDetails($in) {
         $item = JSON.parse($json);
     }
     console.log($item);
-    if ($item !== null) {
-        
+    if ($item !== null && typeof $item['id'] !== 'undefined') {
+
         //add to <p />
         $("#result").empty();
         $("#result").append(
             '<strong>ID</strong>: ' + $item['id'] + '<br />' +
-            '<strong>Location</strong>: ' + $item['location'] + '<br />' +
-            '<strong>Category</strong>: ' + $item['category'] + '<br />'
+            '<strong>Locatie</strong>: ' + $item['location'] + '<br />' +
+            '<strong>Categorie</strong>: ' + $item['category'] + '<br />'
         );
 
         //add attributes to <p />
@@ -143,10 +156,9 @@ function getItems() {
         $($locations).each(function ($index, $element) {
             $("#table tbody")
                 .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'location')
-                    .append($('<td />').append('Location'))
+                    .append($('<td />').append('Locatie'))
                     .append($('<td />').append(''))
                     .append($('<td />').append($element['name']))
-                    .append($('<td />').append(''))
                     .append($('<td />').append($element['action']))
                     .append($('<td />')
                         .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
@@ -166,8 +178,7 @@ function getItems() {
         $($categories).each(function ($index, $element) {
             $("#table tbody")
                 .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'category')
-                    .append($('<td />').append('Category'))
-                    .append($('<td />').append(''))
+                    .append($('<td />').append('Categorie'))
                     .append($('<td />').append(''))
                     .append($('<td />').append($element['name']))
                     .append($('<td />').append($element['action']))
@@ -190,9 +201,8 @@ function getItems() {
             $("#table tbody")
                 .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'item')
                     .append($('<td />').append('Item'))
-                    .append($('<td />').append($('<a />').attr('href', '#').append($element['id'])))
-                    .append($('<td />').append($element['location']))
-                    .append($('<td />').append($element['category']))
+                    .append($('<td />').append($('<a class="table-link" />').attr('href', '#').append($element['id'])))
+                    .append($('<td />').append($element['name']))
                     .append($('<td />').append($element['action']))
                     .append($('<td />')
                         .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
@@ -213,9 +223,8 @@ function getItems() {
         $($usernotes).each(function ($index, $element) {
             $("#table tbody")
                 .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'usernote')
-                    .append($('<td />').append('Comment'))
-                    .append($('<td />').append($('<a />').attr('href', '#').append($element['item_id'])))
-                    .append($('<td />').append($element['']))
+                    .append($('<td />').append('Reactie'))
+                    .append($('<td />').append($('<a class="table-link" />').attr('href', '#').append($element['item_id'])))
                     .append($('<td />').append($element['']))
                     .append($('<td />').append($element['action']))
                     .append($('<td />')
@@ -277,5 +286,16 @@ function loadButtons() {
             window.location = "edit.html";
         });
 
+    });
+
+    //click link in table
+    $(".table-link").click(function ($event) {
+        //prevent default
+        $event.preventDefault();
+
+        $db.items_out.where('id').equals($(this).text()).first(function ($item) {
+            localStorage.setItem('current_item', JSON.stringify($item));
+            window.location = "details.html";
+        });
     });
 }

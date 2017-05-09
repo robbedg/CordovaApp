@@ -7,7 +7,7 @@
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval';">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; img-src data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval';">
     <title>BarcodeReader</title>
 
     <!-- styling references -->
@@ -15,6 +15,7 @@
     <link href="css/tether/tether.min.css" rel="stylesheet" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/nanoscroller.css" rel="stylesheet" />
+    <link href="css/validator-theme-default.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
 
     <link href="css/new.css" rel="stylesheet" />
@@ -45,32 +46,32 @@
             <!-- title -->
             <h1 class="hidden">Inventory</h1>
 
-            <h2>Create</h2>
+            <h2>Nieuw</h2>
 
-            <div class="form-horizontal" id="data">
+            <form class="form-horizontal" id="data">
                 <fieldset>
                     <!-- title -->
-                    <legend>Options</legend>
+                    <legend>Opties</legend>
 
                     <!-- select what -->
                     <div id="what">
-                        <label for="what_select" class="control-label">Create</label>
+                        <label for="what_select" class="control-label">Wat</label>
                         <select class="form-control" id="what_select">
-                            <option value="category">Category</option>
+                            <option value="category">Categorie</option>
                             <option value="item">Item</option>
-                            <option value="location">Location</option>
+                            <option value="location">Locatie</option>
                         </select>
                     </div>
 
                     <!-- select name -->
                     <div id="name">
-                        <label for="name_select" class="control-label">Name</label>
-                        <input type="text" class="form-control" id="name_select" placeholder="Name..." />
+                        <label for="name_select" class="control-label">Naam</label>
+                        <input type="text" class="form-control" id="name_select" name="name" placeholder="Naam..." />
                     </div>
 
                     <!-- select location -->
                     <div id="location" class="hidden">
-                        <label for="location_select" class="control-label">Location</label>
+                        <label for="location_select" class="control-label">Locatie</label>
                         <select class="form-control" id="location_select">
                             <!-- data -->
                         </select>
@@ -78,7 +79,7 @@
 
                     <!-- select category -->
                     <div id="category" class="hidden">
-                        <label for="category_select" class="control-label">Category</label>
+                        <label for="category_select" class="control-label">Categorie</label>
                         <select class="form-control" id="category_select">
                             <!-- data -->
                         </select>
@@ -87,7 +88,7 @@
                 </fieldset>
                 <fieldset id="add-attributes" class="hidden">
                     <!-- title -->
-                    <legend>Attritbutes</legend>
+                    <legend>Attributen</legend>
 
                     <!-- attributes -->
                     <div id="attributes">
@@ -98,7 +99,7 @@
                 <fieldset>
                     <a href="#" class="btn btn-primary btn-lg" id="save"><span class="fa fa-save"></span></a>
                 </fieldset>
-            </div>
+            </form>
         </div>
 
     </div>
@@ -113,8 +114,12 @@
     <script src="scripts/dexie.min.js"></script>
     <script src="scripts/db.js"></script>
 
+    <script src="scripts/jquery.validations/jquery.validate.min.js"></script>
+    <script src="scripts/jquery.validations/localization/messages_nl.js"></script>
+
     <script src="scripts/new/dbactions.js"></script>
     <script src="scripts/new/new.js"></script>
+    <script src="scripts/new/validation.js"></script>
     
     <script src="scripts/scripts.js"></script>
 </body>

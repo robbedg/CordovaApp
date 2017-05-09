@@ -3,6 +3,9 @@
 //get DB
 var $db = getDB();
 
+//identifier
+var $attrCounter = 0;
+
 /**
 * On pageload
 **/
@@ -12,24 +15,9 @@ $(document).ready(function () {
 
     getLocationsCategories();
 
-    loadSave();
-
     loadDelete();
 
 });
-
-/**
- * Attach event to save button
- **/
-function loadSave() {
-    $("#save").click(function ($event) {
-        //prevent default
-        $event.preventDefault();
-
-        //save
-        save();
-    });
-}
 
 /**
  * Load delete buttons
@@ -58,15 +46,17 @@ function pageAttributes() {
             .prepend(
             $('<div class="attribute" />')
                 .append(
-                $('<input type="text" class="form-control attribute-key" placeholder="Attribute" />')
+                    $('<input type="text" class="form-control attribute-key" placeholder="Attribuut..." name="label[]" data-animation="false" unique="true" />').attr('identifier', $attrCounter)
                 )
                 .append(
-                $('<input type="text" class="form-control attribute-value" placeholder="Value" />')
+                    $('<input type="text" class="form-control attribute-value" placeholder="Waarde..." name="value[]" data-animation="false" />')
                 )
                 .append(
-                $('<a href="#" class="btn btn-danger attribute-delete" />').append('<span class="fa fa-close"></span>')
+                    $('<a href="#" class="btn btn-danger attribute-delete" />').append('<span class="fa fa-close"></span>')
                 )
             );
+        //counter
+        $attrCounter++;
 
         //attach event to delete buttons
         loadDelete();
@@ -81,9 +71,7 @@ function pageAttributes() {
 
         //when item is selected
         if ($option.val() === 'item') {
-            //hide
-            $("#name").addClass('hidden');
-
+ 
             //don't hide
             $("#add-attributes").removeClass('hidden');
             $("#location").removeClass('hidden');
@@ -96,8 +84,6 @@ function pageAttributes() {
             $("#location").addClass('hidden');
             $("#category").addClass('hidden');
 
-            //don't hide
-            $("#name").removeClass('hidden');
         }
 
         //reload nanoscroller
