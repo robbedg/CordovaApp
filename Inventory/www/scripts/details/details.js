@@ -14,12 +14,15 @@ $(document).ready(function () {
     }
 
     //set title
-    $("#item_id_title").append($item.id);
+    $("#item_id_title").append($item.name);
 
     //set table
     $("#table")
         .append(
             $('<tr />').append($('<td />').append('<strong>ID</strong>')).append($('<td />').append($item['id']))
+        )
+        .append(
+            $('<tr />').append($('<td />').append('<strong>Naam</strong>')).append($('<td />').append($item['name']))
         )
         .append(
             $('<tr />').append($('<td />').append('<strong>Location</strong>')).append($('<td />').append($item['location']))

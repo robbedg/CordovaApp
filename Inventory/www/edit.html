@@ -7,7 +7,7 @@
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval';">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; img-src data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval';">
     <title>BarcodeReader</title>
 
     <!-- styling references -->
@@ -15,6 +15,7 @@
     <link href="css/tether/tether.min.css" rel="stylesheet" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/nanoscroller.css" rel="stylesheet" />
+    <link href="css/validator-theme-default.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
 
     <link href="css/edit.css" rel="stylesheet" />
@@ -51,27 +52,31 @@
                 <a href="#" class="btn btn-danger btn-lg"><span class="fa fa-trash"></span></a>
             </div>
 
-            <div class="form-horizontal" id="data">
+            <form class="form-horizontal" id="data">
                 <!-- item id -->
                 <input id="item_id" type="hidden" />
                 <fieldset>
                     <!-- title -->
-                    <legend>Edit</legend>
+                    <legend>Bewerken</legend>
+
+                    <!-- set name -->
+                    <label for="name_select" class="control-label">Naam</label>
+                    <input type="text" class="form-control" id="name_select" name="name" data-animation="false">
 
                     <!-- select location -->
-                    <label for="location_select" class="control-label">Location</label>
+                    <label for="location_select" class="control-label">Locatie</label>
                     <select class="form-control" id="location_select">
                         <!-- data -->
                     </select>
 
                     <!-- select category -->
-                    <label for="category_select" class="control-label">Category</label>
+                    <label for="category_select" class="control-label">Categorie</label>
                     <select class="form-control" id="category_select">
                         <!-- data -->
                     </select>
                 </fieldset>
                 <fieldset>
-                    <legend>Attritbutes</legend>
+                    <legend>Attributen</legend>
 
                     <!-- attributes -->
                     <div id="attributes">
@@ -82,7 +87,7 @@
                     <a href="#" class="btn btn-success btn-lg" id="add"><span class="fa fa-plus"></span></a>
                     <a href="#" class="btn btn-primary btn-lg" id="save"><span class="fa fa-save"></span></a>
                 </fieldset>
-            </div>
+            </form>
 
         </div>
     </div>
@@ -96,8 +101,12 @@
 
     <script src="scripts/dexie.min.js"></script>
     <script src="scripts/db.js"></script>
+
+    <script src="scripts/jquery.validations/jquery.validate.min.js"></script>
+    <script src="scripts/jquery.validations/localization/messages_nl.js"></script>
     
     <script src="scripts/edit/edit.js"></script>
+    <script src="scripts/edit/validation.js"></script>
     <script src="scripts/scripts.js"></script>
 </body>
 </html>

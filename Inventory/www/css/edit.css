@@ -49,3 +49,10 @@ select.form-control {
 #save {
     float: right;
 }
+
+/* ERRORS */
+span.error {
+    display: inline-block;
+    float: right;
+    color: red;
+}

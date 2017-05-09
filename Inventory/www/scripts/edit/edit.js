@@ -1,6 +1,10 @@
 ﻿"use strict";
 
+//get db
 var $db = getDB();
+
+//attr counter
+var $attrCounter = 0;
 
 //debug
 console.log(localStorage.getItem('current_item'));
@@ -16,8 +20,11 @@ $(document).ready(function () {
     }
 
     //set title
-    $("#item_id_title").append($item.id);
+    $("#item_id_title").append($item.name);
     $("#item_id").val($item.id);
+
+    //set name
+    $("#name_select").val($item['name']);
 
 
     //set locations
@@ -74,15 +81,17 @@ $(document).ready(function () {
             .append(
             $('<div class="attribute" />')
                 .append(
-                    $('<input type="text" class="form-control attribute-key" />').val($key)
+                    $('<input type="text" class="form-control attribute-key" name="label[]" data-animation="false" unique="true" />').val($key).attr('identifier', $attrCounter)
                 )
                 .append(
-                    $('<input type="text" class="form-control attribute-value" />').val($value)
+                    $('<input type="text" class="form-control attribute-value name="value[]" data-animation="false" />').val($value)
                 )
                 .append(
                     $('<a href="#" class="btn btn-danger attribute-delete" />').append('<span class="fa fa-close"></span>')
                 )
             );
+        //count
+        $attrCounter++;
     });
 
     //load buttons
@@ -101,6 +110,14 @@ function loadDelete() {
         //delete
         $(this).parent().remove();
     });
+
+    //add removal off errors
+    $("#data input").keydown(function () {
+        //remove previous
+        $(this).removeAttr('data-toggle');
+        $(this).removeAttr('data-original-title');
+        $(this).removeClass('error');
+    });
 }
 
 //add attribute
@@ -113,16 +130,17 @@ $("#add").click(function ($event) {
         .append(
         $('<div class="attribute" />')
             .append(
-                $('<input type="text" class="form-control attribute-key" placeholder="Attribute" />')
+                $('<input type="text" class="form-control attribute-key" name="label[]" placeholder="Attribuut..." data-animation="false" unique="true" />').attr('identifier', $attrCounter)
             )
             .append(
-                $('<input type="text" class="form-control attribute-value" placeholder="Value" />')
+                $('<input type="text" class="form-control attribute-value" name="value[]" placeholder="Waarde..." data-animation="false" />')
             )
             .append(
                 $('<a href="#" class="btn btn-danger attribute-delete" />').append('<span class="fa fa-close"></span>')
             )
         );
-
+    //count
+    $attrCounter++;
     //load buttons
     loadDelete();
     //load scrollbar
@@ -130,9 +148,7 @@ $("#add").click(function ($event) {
 });
 
 //save
-$("#save").click(function ($event) {
-    //prevent default
-    $event.preventDefault();
+function saveChanges() {
 
     //get attributes
     var $attributes = new Object();
@@ -146,6 +162,7 @@ $("#save").click(function ($event) {
 
     //create item
     var $item = JSON.parse(localStorage.getItem('current_item'));
+    $item['name'] = $("#name_select").val();
     $item['location'] = $('#location_select').val();
     $item['category'] = $('#category_select').val();
     $item['attributes'] = $attributes;
@@ -161,7 +178,7 @@ $("#save").click(function ($event) {
         //back to home
         window.location = 'index.html';
     });
-});
+}
 
 //delete button
 $("#delete a").click(function ($event) {
