@@ -70,6 +70,11 @@ function pageAttributes() {
 
     //when item is selected, add ability to add attributes
     $("#what_select").change(function () {
+        //hide & clear errors
+        $("#errors").addClass('hidden');
+        $("#errors p").empty();
+
+        //get selected option
         var $option = $(this);
 
         //when item is selected

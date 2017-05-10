@@ -48,6 +48,11 @@ function getLocationsCategories() {
  * Save newly created.
  **/
 function save() {
+    //hide & empty errors
+    $("#errors").addClass('hidden');
+    $("#errors p").empty();
+
+    //What the user wants to create
     var $what = $("#what_select").val();
     
     //object for db
@@ -55,16 +60,17 @@ function save() {
     $object.action = 'Create';
 
     //what does user want to create?
+    //new item
     if ($what === 'item') {
-        $object.name = $("#name_select").val();
+        $object.name = $("#name_select").val().trim();
         $object.location = $("#location_select").val();
         $object.category = $("#category_select").val();
         $object.attributes = new Object();
 
         //attributes
         $(".attribute").each(function () {
-            var $key = $(this).find(".attribute-key").first().val();
-            var $val = $(this).find(".attribute-value").first().val();
+            var $key = $(this).find(".attribute-key").first().val().trim();
+            var $val = $(this).find(".attribute-value").first().val().trim();
             $object.attributes[$key] = $val;
         });
 
@@ -74,22 +80,62 @@ function save() {
             window.location = 'index.html';
         });
 
+    //new location
     } else if ($what === 'location') {
-        $object.name = $("#name_select").val();
+        //get data
+        $object.name = $("#name_select").val().trim();
 
-        //to db
-        $db.locations_out.add($object).then(function () {
-            //redirect
-            window.location = 'index.html';
+        //check if already exists
+        var $count1 = 0;
+        var $count2 = 0;
+        $db.transaction('r', $db.locations, $db.locations_out, function () {
+            $db.locations.where('name').equals($object.name).count(function ($count) {
+                $count1 = $count;
+            });
+            $db.locations_out.where('name').equals($object.name).count(function ($count) {
+                $count2 = $count;
+            });
+        }).then(function () {
+            //if location does not exist yet.
+            if ($count1 === 0 && $count2 === 0) {
+                //to db
+                $db.locations_out.add($object).then(function () {
+                    //redirect
+                    window.location = 'index.html';
+                });
+            } else {
+                $("#errors").removeClass('hidden');
+                $("#errors p").append('Deze locatie is al aangemaakt.');
+            }
         });
 
+    //new category
     } else if ($what === 'category') {
-        $object.name = $("#name_select").val();
+        //get data
+        $object.name = $("#name_select").val().trim();
 
-        //to db
-        $db.categories_out.add($object).then(function () {
-            //redirect
-            window.location = 'index.html';
+        //check if already exists
+        var $count1 = 0;
+        var $count2 = 0;
+        $db.transaction('r', $db.categories, $db.categories_out, function () {
+            $db.categories.where('name').equals($object.name).count(function ($count) {
+                $count1 = $count;
+            });
+            $db.categories_out.where('name').equals($object.name).count(function ($count) {
+                $count2 = $count;
+            });
+        }).then(function () {
+            //if categorie does not exist yet.
+            if ($count1 === 0 && $count2 === 0) {
+                //to db
+                $db.categories_out.add($object).then(function () {
+                    //redirect
+                    window.location = 'index.html';
+                });
+            } else {
+                $("#errors").removeClass('hidden');
+                $("#errors p").append('Deze categorie is al aangemaakt.');
+            }
         });
     }
 }
