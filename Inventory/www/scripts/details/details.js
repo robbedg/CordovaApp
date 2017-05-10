@@ -25,13 +25,13 @@ $(document).ready(function () {
             $('<tr />').append($('<td />').append('<strong>Naam</strong>')).append($('<td />').append($item['name']))
         )
         .append(
-            $('<tr />').append($('<td />').append('<strong>Location</strong>')).append($('<td />').append($item['location']))
+            $('<tr />').append($('<td />').append('<strong>Locatie</strong>')).append($('<td />').append($item['location']))
         )
         .append(
-            $('<tr />').append($('<td />').append('<strong>Category</strong>')).append($('<td />').append($item['category']))
+            $('<tr />').append($('<td />').append('<strong>Categorie</strong>')).append($('<td />').append($item['category']))
         )
         .append(
-            $('<tr />').append($('<td />').append('<strong>Last Loan</strong>')).append($('<td />').append($('<lu id="last-loan" />')))
+            $('<tr />').append($('<td />').append('<strong>Laatste Reservatie</strong>')).append($('<td />').append($('<lu id="last-loan" />')))
         );
 
     //last loan
@@ -46,7 +46,7 @@ $(document).ready(function () {
     } else {
         $("#last-loan")
             .append(
-                $('<li />').append('Unavailable')
+                $('<li />').append('Niet beschikbaar.')
             );
     }
 
@@ -58,9 +58,17 @@ $(document).ready(function () {
             );
     });
 
+    //load usernotes
+    loadUserNotes();
+
+    //load new note form
+    loadNewNote();
+
     //reload nanoscroller
     $(".nano").nanoScroller();
 
+    //show page
+    $("html").css('visibility', 'visible');
 });
 
 //delete button

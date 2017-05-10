@@ -11,12 +11,15 @@ var $attrCounter = 0;
 **/
 $(document).ready(function () {
 
+    //functions for attributes
     pageAttributes();
-
+    //categories & locations
     getLocationsCategories();
-
+    //delete buttons
     loadDelete();
 
+    //Show page
+    $("html").css('visibility', 'visible');
 });
 
 /**

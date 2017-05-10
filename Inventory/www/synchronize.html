@@ -40,18 +40,23 @@
     <!-- content -->
     <div id="wrapper" class="nano">
         <div class="nano-content">
+            <!-- errors -->
+            <div class="alert alert-danger hidden" id="errors">
+                <p><!-- error --></p>
+            </div>
+
             <!-- title -->
             <h1 class="hidden">Inventory</h1>
 
             <div id="buttons" class="clearfix">
                 <!-- download -->
                 <div id="download">
-                    <a href="#" class="btn btn-primary btn-lg"><span class="fa fa-download"></span> Download</a>
+                    <a href="#" class="btn btn-primary btn-lg"><span class="fa fa-download"></span> Downloaden</a>
                 </div>
 
                 <!-- upload -->
                 <div id="upload">
-                    <a href="#" class="btn btn-primary btn-lg"><span class="fa fa-upload"></span> Upload</a>
+                    <a href="#" class="btn btn-primary btn-lg"><span class="fa fa-upload"></span> Uploaden</a>
                 </div>
             </div>
 
@@ -75,8 +80,10 @@
 
     <script src="scripts/dexie.min.js"></script>
     <script src="scripts/db.js"></script>
+
     <script src="scripts/synchronize/download.js"></script>
     <script src="scripts/synchronize/upload.js"></script>
+    <script src="scripts/synchronize/synchronize.js"></script>
 
     <script src="scripts/scripts.js"></script>
 </body>

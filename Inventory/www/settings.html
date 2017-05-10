@@ -40,23 +40,28 @@
     <div id="wrapper" class="nano">
          <div class="nano-content">
 
+            <!-- errors -->
+            <div class="alert alert-danger hidden" id="errors">
+                <p style="margin: 0px;"><!-- data --></p>
+            </div>
+
             <!-- title -->
             <h1 class="hidden">Settings</h1>
 
             <div id="address" class="form-group">
-                <label class="control-label" for="address_in">Address</label>
-                <input class="form-control" id="address_in" type="text" placeholder="http://example.com" />
+                <label class="control-label" for="address_in">URL</label>
+                <input class="form-control" id="address_in" type="text" placeholder="https://example.com" />
             </div>
              <div id="username" class="form-group">
-                 <label class="control-label" for="username_in">Username</label>
-                 <input class="form-control" id="username_in" type="text" placeholder="Username" />
+                 <label class="control-label" for="username_in">Gebruikersnaam</label>
+                 <input class="form-control" id="username_in" type="text" placeholder="Gebruikersnaam..." />
              </div>
              <div id="password" class="form-group">
-                 <label class="control-label" for="password_in">Password</label>
-                 <input class="form-control" id="password_in" type="password" placeholder="Password" />
+                 <label class="control-label" for="password_in">Wachtwoord</label>
+                 <input class="form-control" id="password_in" type="password" placeholder="Wachtwoord..." />
              </div>
             <div id="save">
-                <a href="#" class="btn btn-primary btn-lg"><span class="fa fa-save"></span></a>
+                <a href="#" class="btn btn-primary btn-lg" style="float: right;"><span class="fa fa-save"></span></a>
             </div>
         
 

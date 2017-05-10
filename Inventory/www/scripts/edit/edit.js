@@ -6,9 +6,6 @@ var $db = getDB();
 //attr counter
 var $attrCounter = 0;
 
-//debug
-console.log(localStorage.getItem('current_item'));
-
 //on load
 $(document).ready(function () {
     //check localstorage
@@ -99,6 +96,9 @@ $(document).ready(function () {
 
     //reload nanoscroller
     $(".nano").nanoScroller();
+
+    //show page
+    $("html").css('visibility', 'visible');
 });
 
 //load delete buttons

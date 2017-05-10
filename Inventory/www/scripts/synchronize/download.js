@@ -4,6 +4,10 @@ $("#download a").click(function ($event) {
     //prevent default
     $event.preventDefault();
 
+    //empty & hide errors
+    $("#errors").addClass('hidden');
+    $("#errors p").empty();
+
     //get address
     if (localStorage.getItem('settings') !== null) {
         var $settings = JSON.parse(localStorage.getItem('settings'));
@@ -35,7 +39,15 @@ function pullData($settings) {
     }).done(function ($response) {
         if ($response.success === true) {
             startTransaction();
+        } else {
+            //show error
+            $("#errors").removeClass("hidden");
+            $("#errors p").append('De authenticatie is niet gelukt. ').append($('<a href="settings.html" class="alert-link" />').append('Bekijk instellingen.'));
         }
+    }).fail(function () {
+        //show error
+        $("#errors").removeClass("hidden");
+        $("#errors p").append('Kan de server niet vinden. ').append($('<a href="settings.html" class="alert-link" />').append('Bekijk instellingen.'));
     });
 
     //push data
@@ -74,7 +86,13 @@ function pullData($settings) {
                 //user feedback
                 $(".progress-bar").removeClass('progress-bar-striped').removeClass('progress-bar-animated');
                 $("#feedback-text").text('done');
+            }).catch(function () {
+                $("#errors").removeClass('hidden');
+                $("#errors p").append('De gegevens kunnen niet worden gedownload, bekijk de beschikbare opslagruimte.');
             });
+        }).fail(function () {
+            $("#errors").removeClass('hidden');
+            $("#errors p").append('Request is mislukt, probeer opnieuw later.');
         });
     }
 }

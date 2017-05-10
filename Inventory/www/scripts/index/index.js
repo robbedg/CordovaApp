@@ -1,5 +1,6 @@
 ﻿"use strict";
 
+//get db
 var $db = getDB();
 
 /**
@@ -136,17 +137,25 @@ function showDetails($in) {
 //on document load
 $(document).ready(function () {
 
+    //translations
+    var $translations = { Create: 'Aanmaken', Update: 'Updaten', Delete: 'Verwijderen' };
+
+    //current item
     if (localStorage.getItem('current_item') !== null) {
         var $item = JSON.parse(localStorage.getItem('current_item'));
         showDetails($item, true);
     }
 
-    getItems();
+    //show table
+    getItems($translations);
+
+    //show page
+    $('html').css('visibility', 'visible');
 
 });
 
 //get items from localstorage
-function getItems() {
+function getItems($translations) {
     //empty table
     $("#table tbody").empty();
 
@@ -159,7 +168,7 @@ function getItems() {
                     .append($('<td />').append('Locatie'))
                     .append($('<td />').append(''))
                     .append($('<td />').append($element['name']))
-                    .append($('<td />').append($element['action']))
+                    .append($('<td />').append($translations[$element['action']]))
                     .append($('<td />')
                         .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
                     )
@@ -181,7 +190,7 @@ function getItems() {
                     .append($('<td />').append('Categorie'))
                     .append($('<td />').append(''))
                     .append($('<td />').append($element['name']))
-                    .append($('<td />').append($element['action']))
+                    .append($('<td />').append($translations[$element['action']]))
                     .append($('<td />')
                         .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
                     )
@@ -203,7 +212,7 @@ function getItems() {
                     .append($('<td />').append('Item'))
                     .append($('<td />').append($('<a class="table-link" />').attr('href', '#').append($element['id'])))
                     .append($('<td />').append($element['name']))
-                    .append($('<td />').append($element['action']))
+                    .append($('<td />').append($translations[$element['action']]))
                     .append($('<td />')
                         .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
                         .append($('<a href="#" class="btn btn-primary btn-sm edit" /a>').append('<span class="fa fa-edit"></span>'))
@@ -226,7 +235,7 @@ function getItems() {
                     .append($('<td />').append('Reactie'))
                     .append($('<td />').append($('<a class="table-link" />').attr('href', '#').append($element['item_id'])))
                     .append($('<td />').append($element['']))
-                    .append($('<td />').append($element['action']))
+                    .append($('<td />').append($translations[$element['action']]))
                     .append($('<td />')
                         .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
                     )

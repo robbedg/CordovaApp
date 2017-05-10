@@ -92,7 +92,15 @@ function pushData($settings) {
         }).done(function ($response) {
             if ($response.success === true) {
                 startTransaction();
+            } else {
+                //show error
+                $("#errors").removeClass("hidden");
+                $("#errors p").append('De authenticatie is niet gelukt. ').append($('<a href="settings.html" class="alert-link" />').append('Bekijk instellingen.'));
             }
+        }).fail(function () {
+            //show error
+            $("#errors").removeClass("hidden");
+            $("#errors p").append('Kan de server niet vinden. ').append($('<a href="settings.html" class="alert-link" />').append('Bekijk instellingen.'));
         });
 
         //push data
@@ -108,11 +116,19 @@ function pushData($settings) {
                 dataType: 'json',
                 data: JSON.stringify($data)
             }).done(function ($response) {
-                console.log($response);
-            }).always(function () {
-                //user feedback
-                $(".progress-bar").removeClass('progress-bar-striped').removeClass('progress-bar-animated');
-                $("#feedback-text").text('done');
+                //check if successful
+                if ($response.success === true) {
+                    //user feedback
+                    $(".progress-bar").removeClass('progress-bar-striped').removeClass('progress-bar-animated');
+                    $("#feedback-text").text('done');
+                } else {
+                    //show error
+                    $("#errors").removeClass("hidden");
+                    $("#errors p").append('De applicatie kan niet sychroniseren. ').append($('<a href="index.html" class="alert-link" />').append('Bekijk je doorgevoerde veranderingen.'));
+                }
+            }).fail(function () {
+                $("#errors").removeClass("hidden");
+                $("#errors p").append('Request is mislukt, probeer opnieuw later.');
             });
         }
     }
