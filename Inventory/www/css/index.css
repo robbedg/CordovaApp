@@ -99,3 +99,11 @@
     float: right;
     margin-left: 10px;
 }
+
+/**
+ * MODAL
+**/
+
+#modal-text {
+    text-align: center;
+}

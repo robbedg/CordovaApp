@@ -159,89 +159,98 @@ function getItems() {
     //empty table
     $("#table tbody").empty();
 
-    //locations
-    $db.locations_out.toArray(function ($locations) {
-        //fill table
-        $($locations).each(function ($index, $element) {
-            $("#table tbody")
-                .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'location')
-                    .append($('<td />').append('Locatie'))
-                    .append($('<td />').append(''))
-                    .append($('<td />').append($element['name']))
-                    .append($('<td />').append($translations[$element['action']]))
-                    .append($('<td />')
-                        .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
-                    )
-                );
+    //transaction
+    $db.transaction('r', $db.locations_out, $db.categories_out, $db.items_out, $db.usernotes_out, function () {
+        //locations
+        $db.locations_out.toArray(function ($locations) {
+
+            //fill table
+            $($locations).each(function ($index, $element) {
+
+                //remove hidden class
+                $("#overview").removeClass('hidden');
+
+                $("#table tbody")
+                    .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'location')
+                        .append($('<td />').append('Locatie'))
+                        .append($('<td />').append(''))
+                        .append($('<td />').append($element['name']))
+                        .append($('<td />').append($translations[$element['action']]))
+                        .append($('<td />')
+                            .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
+                        )
+                    );
+            });
+        });
+
+        //categories
+        $db.categories_out.toArray(function ($categories) {
+            
+            //fill table
+            $($categories).each(function ($index, $element) {
+
+                //remove hidden class
+                $("#overview").removeClass('hidden');
+
+                $("#table tbody")
+                    .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'category')
+                        .append($('<td />').append('Categorie'))
+                        .append($('<td />').append(''))
+                        .append($('<td />').append($element['name']))
+                        .append($('<td />').append($translations[$element['action']]))
+                        .append($('<td />')
+                            .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
+                        )
+                    );
+            });
+        });
+
+        //items
+        $db.items_out.toArray(function ($items) {
+            
+            //fill table
+            $($items).each(function ($index, $element) {
+
+                //remove hidden class
+                $("#overview").removeClass('hidden');
+
+                $("#table tbody")
+                    .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'item')
+                        .append($('<td />').append('Item'))
+                        .append($('<td />').append($('<a class="table-link" />').attr('href', '#').append($element['id'])))
+                        .append($('<td />').append($element['name']))
+                        .append($('<td />').append($translations[$element['action']]))
+                        .append($('<td />')
+                            .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
+                            .append($('<a href="#" class="btn btn-primary btn-sm edit" /a>').append('<span class="fa fa-edit"></span>'))
+                        )
+                    );
+            });
+        });
+
+        //usernotes
+        $db.usernotes_out.toArray(function ($usernotes) {
+            
+            //fill table
+            $($usernotes).each(function ($index, $element) {
+
+                //remove hidden class
+                $("#overview").removeClass('hidden');
+
+                $("#table tbody")
+                    .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'usernote')
+                        .append($('<td />').append('Reactie'))
+                        .append($('<td />').append($('<a class="table-link" />').attr('href', '#').append($element['item_id'])))
+                        .append($('<td />').append($element['']))
+                        .append($('<td />').append($translations[$element['action']]))
+                        .append($('<td />')
+                            .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
+                        )
+                    );
+            });
         });
     }).then(function () {
-        loadButtons();
-
-        //refresh scrollbar
-        $(".nano").nanoScroller();
-    });
-
-    //categories
-    $db.categories_out.toArray(function ($categories) {
-        //fill table
-        $($categories).each(function ($index, $element) {
-            $("#table tbody")
-                .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'category')
-                    .append($('<td />').append('Categorie'))
-                    .append($('<td />').append(''))
-                    .append($('<td />').append($element['name']))
-                    .append($('<td />').append($translations[$element['action']]))
-                    .append($('<td />')
-                        .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
-                    )
-                );
-        });
-    }).then(function () {
-        loadButtons();
-
-        //refresh scrollbar
-        $(".nano").nanoScroller();
-    });
-
-    //items
-    $db.items_out.toArray(function ($items) {
-        //fill table
-        $($items).each(function ($index, $element) {
-            $("#table tbody")
-                .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'item')
-                    .append($('<td />').append('Item'))
-                    .append($('<td />').append($('<a class="table-link" />').attr('href', '#').append($element['id'])))
-                    .append($('<td />').append($element['name']))
-                    .append($('<td />').append($translations[$element['action']]))
-                    .append($('<td />')
-                        .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
-                        .append($('<a href="#" class="btn btn-primary btn-sm edit" /a>').append('<span class="fa fa-edit"></span>'))
-                    )
-                );
-        });
-    }).then(function () {
-        loadButtons();
-
-        //refresh scrollbar
-        $(".nano").nanoScroller();
-    });
-
-    //usernotes
-    $db.usernotes_out.toArray(function ($usernotes) {
-        //fill table
-        $($usernotes).each(function ($index, $element) {
-            $("#table tbody")
-                .append($('<tr />').attr('data-id', $element['prim_key']).attr('data-kind', 'usernote')
-                    .append($('<td />').append('Reactie'))
-                    .append($('<td />').append($('<a class="table-link" />').attr('href', '#').append($element['item_id'])))
-                    .append($('<td />').append($element['']))
-                    .append($('<td />').append($translations[$element['action']]))
-                    .append($('<td />')
-                        .append($('<a href="#" class="btn btn-danger btn-sm delete" /a>').append('<span class="fa fa-close"></span>'))
-                    )
-                );
-        });
-    }).then(function () {
+        //load buttons
         loadButtons();
 
         //refresh scrollbar
@@ -264,36 +273,117 @@ function loadButtons() {
         //what?
         //location
         if ($kind === 'location') {
-            $db.locations_out.where('prim_key').equals($id).first(function ($location) {
-                //delete items in location
-                $db.items_out.where('location').equals($location['name']).delete();
-                //delete location
-                $db.locations_out.where('prim_key').equals($id).delete();
-            }).then(function () {
-                //reload
-                getItems();
-            });
-        //category
-        } else if ($kind === 'category') {
-            $db.categories_out.where('prim_key').equals($id).first(function ($category) {
-                //delete items in category
-                $db.items_out.where('category').equals($category['name']).delete();
-                //delete category
-                $db.categories_out.where('prim_key').equals($id).delete();
-            }).then(function () {
-                //reload
-                getItems();
-            });
-        //item
-        } else if ($kind === 'item') {
-            $db.items_out.where('prim_key').equals($id).delete();
-        //usernote
-        } else if ($kind === 'usernote') {
-            $db.usernotes_out.where('prim_key').equals($id).delete();
-        }
+            //modal
+            $("#delete-submit").unbind();
+            $("#modal-text").empty();
+            $("#modal-text").append('Wanneer je een locatie verwijderd, worden alle items daarin ook verwijderd.');
+            $("#delete-modal").modal('show');
 
-        //delete from table
-        $(this).parent().parent().remove();
+            //confirm
+            $("#delete-submit").click(function ($event) {
+                //prevent default
+                $event.preventDefault();
+
+                //database
+                $db.locations_out.where('prim_key').equals($id).first(function ($location) {
+                    //delete items in location
+                    $db.items_out.where('location').equals($location['name']).delete();
+                    //delete location
+                    $db.locations_out.where('prim_key').equals($id).delete();
+                }).then(function () {
+                    //reload
+                    $("#overview").addClass('hidden');
+                    getItems();
+                });
+
+                //unbind
+                $("#delete-submit").unbind();
+                //close
+                $("#delete-modal").modal('hide');
+            });
+
+            //category
+        } else if ($kind === 'category') {
+            //modal
+            $("#delete-submit").unbind();
+            $("#modal-text").empty();
+            $("#modal-text").append('Wanneer je een categorie verwijderd, worden alle items daarin ook verwijderd.');
+            $("#delete-modal").modal('show');
+
+            //confirm
+            $("#delete-submit").click(function ($event) {
+                //prevent default
+                $event.preventDefault();
+
+                //database
+                $db.categories_out.where('prim_key').equals($id).first(function ($category) {
+                    //delete items in category
+                    $db.items_out.where('category').equals($category['name']).delete();
+                    //delete category
+                    $db.categories_out.where('prim_key').equals($id).delete();
+                }).then(function () {
+                    //reload
+                    $("#overview").addClass('hidden');
+                    getItems();
+                });
+
+                //unbind
+                $("#delete-submit").unbind();
+                //close
+                $("#delete-modal").modal('hide');
+            });
+            //item
+        } else if ($kind === 'item') {
+            //modal
+            $("#delete-submit").unbind();
+            $("#modal-text").empty();
+            $("#modal-text").append('Wilt u dit item verwijderen?');
+            $("#delete-modal").modal('show');
+
+            //confirm
+            $("#delete-submit").click(function ($event) {
+                //prevent default
+                $event.preventDefault();
+
+                //database
+                $db.items_out.where('prim_key').equals($id).delete();
+
+                //reload
+                $("#overview").addClass('hidden');
+                getItems();
+
+                //unbind
+                $("#delete-submit").unbind();
+                //close
+                $("#delete-modal").modal('hide');
+            });
+
+            //usernote
+        } else if ($kind === 'usernote') {
+            //modal
+            $("#delete-submit").unbind();
+            $("#modal-text").empty();
+            $("#modal-text").append('Wilt u deze reactie verwijderen?');
+            $("#delete-modal").modal('show');
+
+            //confirm
+            $("#delete-submit").click(function ($event) {
+                //prevent default
+                $event.preventDefault();
+
+                //database
+                $db.usernotes_out.where('prim_key').equals($id).delete();
+
+                //reload
+                $("#overview").addClass('hidden');
+                getItems();
+
+                //unbind
+                $("#delete-submit").unbind();
+                //close
+                $("#delete-modal").modal('hide');
+            });
+        }
 
         //empty selected
         localStorage.removeItem('current_item');

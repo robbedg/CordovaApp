@@ -119,8 +119,15 @@ function pushData($settings) {
                 //check if successful
                 if ($response.success === true) {
                     //user feedback
-                    $(".progress-bar").removeClass('progress-bar-striped').removeClass('progress-bar-animated');
-                    $("#feedback-text").text('done');
+                    $db.transaction('rw', $db.locations_out, $db.categories_out, $db.items_out, $db.usernotes_out, function () {
+                        $db.locations_out.clear();
+                        $db.categories_out.clear();
+                        $db.items_out.clear();
+                        $db.usernotes_out.clear();
+                    }).then(function () {
+                        $(".progress-bar").removeClass('progress-bar-striped').removeClass('progress-bar-animated');
+                        $("#feedback-text").text('done');
+                    });
                 } else {
                     //show error
                     $("#errors").removeClass("hidden");
