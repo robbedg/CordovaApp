@@ -3,6 +3,9 @@
 //get db
 var $db = getDB();
 
+//translations
+var $translations = { Create: 'Aanmaken', Update: 'Updaten', Delete: 'Verwijderen' };
+
 /**
  * Search button
  **/
@@ -137,9 +140,6 @@ function showDetails($in) {
 //on document load
 $(document).ready(function () {
 
-    //translations
-    var $translations = { Create: 'Aanmaken', Update: 'Updaten', Delete: 'Verwijderen' };
-
     //current item
     if (localStorage.getItem('current_item') !== null) {
         var $item = JSON.parse(localStorage.getItem('current_item'));
@@ -147,7 +147,7 @@ $(document).ready(function () {
     }
 
     //show table
-    getItems($translations);
+    getItems();
 
     //show page
     $('html').css('visibility', 'visible');
@@ -155,7 +155,7 @@ $(document).ready(function () {
 });
 
 //get items from localstorage
-function getItems($translations) {
+function getItems() {
     //empty table
     $("#table tbody").empty();
 
@@ -262,12 +262,32 @@ function loadButtons() {
         var $kind = $(this).parent().parent().attr('data-kind');
 
         //what?
+        //location
         if ($kind === 'location') {
-            $db.locations_out.where('prim_key').equals($id).delete();
+            $db.locations_out.where('prim_key').equals($id).first(function ($location) {
+                //delete items in location
+                $db.items_out.where('location').equals($location['name']).delete();
+                //delete location
+                $db.locations_out.where('prim_key').equals($id).delete();
+            }).then(function () {
+                //reload
+                getItems();
+            });
+        //category
         } else if ($kind === 'category') {
-            $db.categories_out.where('prim_key').equals($id).delete();
+            $db.categories_out.where('prim_key').equals($id).first(function ($category) {
+                //delete items in category
+                $db.items_out.where('category').equals($category['name']).delete();
+                //delete category
+                $db.categories_out.where('prim_key').equals($id).delete();
+            }).then(function () {
+                //reload
+                getItems();
+            });
+        //item
         } else if ($kind === 'item') {
             $db.items_out.where('prim_key').equals($id).delete();
+        //usernote
         } else if ($kind === 'usernote') {
             $db.usernotes_out.where('prim_key').equals($id).delete();
         }
