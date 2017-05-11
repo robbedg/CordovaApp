@@ -40,10 +40,8 @@ function searchOnID($result) {
 
     //get results
     $item.id = $result;
-    console.log($item);
 
     $db.items_out.where('id').equals($item.id).count(function ($count) {
-        console.log($count);
 
         //not yet modified
         if ($count === 0) {
@@ -62,7 +60,6 @@ function searchOnID($result) {
                         .where('id')
                         .equals($item.id)
                         .first(function ($result) {
-                            console.log($result);
                             //add to objects
                             $item = $result;
 
@@ -70,7 +67,6 @@ function searchOnID($result) {
                             localStorage.setItem('current_item', JSON.stringify($item));
 
                             //show results
-                            console.log($item);
                             showDetails($item);
                         });
                 }
@@ -88,7 +84,6 @@ function searchOnID($result) {
                 localStorage.setItem('current_item', JSON.stringify($item));
 
                 //show results
-                console.log($item);
                 showDetails($item);
             });
         }
@@ -111,7 +106,7 @@ function showDetails($in) {
     if ($item === null && $json !== null) {
         $item = JSON.parse($json);
     }
-    console.log($item);
+
     if ($item !== null && typeof $item['id'] !== 'undefined') {
 
         //add to <p />

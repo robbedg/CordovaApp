@@ -10,9 +10,7 @@ var $attrCounter = 0;
 $(document).ready(function () {
     //check localstorage
     var $item = localStorage.getItem('current_item');
-    if ($item === null) {
-        console.log('error');
-    } else {
+    if ($item !== null) {
         $item = JSON.parse($item);
     }
 

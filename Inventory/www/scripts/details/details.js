@@ -7,9 +7,7 @@ var $db = getDB();
 $(document).ready(function () {
     //check localstorage
     var $item = localStorage.getItem('current_item');
-    if ($item === null) {
-        console.log('error');
-    } else {
+    if ($item !== null) {
         $item = JSON.parse($item);
     }
 
@@ -76,16 +74,13 @@ $("#delete").click(function ($event) {
 
     //check localstorage
     var $item = localStorage.getItem('current_item');
-    if ($item === null) {
-        console.log('error');
-    } else {
+    if ($item !== null) {
         $item = JSON.parse($item);
     }
 
     //prevent default
     $event.preventDefault();
 
-    console.log($item);
     //create item
     var $item = { id: $item['id'], location: $item['location'], category: $item['category'], attributes: $item['attributes'], action: 'Delete' };
 

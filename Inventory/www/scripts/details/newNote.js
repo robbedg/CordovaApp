@@ -39,17 +39,13 @@ $("#submit-new-note").click(function ($event) {
     if ($("#newnote textarea").val().trim() !== '' && $("#newnote textarea").val().trim().length <= 1024) {
         //check localstorage
         var $item = localStorage.getItem('current_item');
-        if ($item === null) {
-            console.log('error');
-        } else {
+        if ($item !== null) {
             $item = JSON.parse($item);
         }
 
         //check localstorage
         var $settings = localStorage.getItem('settings');
-        if ($settings === null) {
-            console.log('error');
-        } else {
+        if ($settings !== null) {
             $settings = JSON.parse($settings);
         }
 
